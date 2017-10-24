@@ -1,0 +1,6 @@
+framework module Pods_xRSS {
+  umbrella header "Pods-xRSS-umbrella.h"
+
+  export *
+  module * { export * }
+}
