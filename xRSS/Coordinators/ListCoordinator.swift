@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RxSwift
+import FeedKit
 
 class ListCoordinator: Coordinator {
     
     weak var appCoordinator: Coordinator!
     weak var navigationController: UINavigationController!
+    var bag = DisposeBag()
     
     init (navigationController: UINavigationController) {
         
@@ -27,7 +30,19 @@ class ListCoordinator: Coordinator {
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
             
+            viewModel.newsProviderSelected
+                .flatMap { newsProvider -> Observable<[FeedKit.RSSFeedItem]> in
+            
+                    RSSService.shared.getFeed(forURL: newsProvider.url)
+                
+                }.subscribe(onNext: { items in
+                    print(items)
+                })
+                .disposed(by: bag)
+            
+            
         }
+        
         
         
         

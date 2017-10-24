@@ -18,7 +18,6 @@ class AppCoordinator: Coordinator {
     
     var window: UIWindow
     var coordinators = [String : Coordinator]()
-    //  let navigationController: UINavigationController = UINavigationController()
     
     init(window: UIWindow)
     {

@@ -13,7 +13,7 @@ import RxCocoa
 class ListViewController: UIViewController {
     
     var viewModel: ListViewModel!
-    var disposeBag = DisposeBag()
+    var bag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,12 +22,16 @@ class ListViewController: UIViewController {
         navigationItem.title = "Choose news provider"
         tableView.rowHeight = 60
        
-        viewModel.newsProviders
+        viewModel.newsProviders.asObservable()
         .observeOn(main)
             .bind(to: tableView.rx.items(cellIdentifier: "listItemCell", cellType: UITableViewCell.self)) { (_, newsProvider, cell) in
-                cell.textLabel?.text = newsProvider
+                cell.textLabel?.text = newsProvider.title
             }
-            .disposed(by: disposeBag)
+            .disposed(by: bag)
+        
+        tableView.rx.modelSelected(NewsProvider.self)
+        .bind(to: viewModel.newsProviderSelected)
+            .disposed(by: bag)
         
     }
 

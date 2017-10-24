@@ -7,6 +7,8 @@ target 'xRSS' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Realm'
+  pod 'FeedKit'
+
 
   # Pods for xRSS
 
