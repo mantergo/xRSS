@@ -20,26 +20,29 @@ class FeedListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        
-//        viewModel.feedItems.asObservable()
-//        .observeOn(main)
-//            .bind(to: tableView.rx.items(cellIdentifier: "feedItemCell", cellType: UITableViewCell.self)) {(_, feedItem, cell) in
-//                cell.textLabel?.text = feedItem.title
-//            }
-//            .disposed(by: bag)
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
 
-       
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         viewModel.feedItems.asObservable()
             .observeOn(main)
-            .bind(to: tableView.rx.items(cellIdentifier: "feedItemCell", cellType: UITableViewCell.self)) {(_, feedItem, cell) in
-                cell.textLabel?.text = feedItem.title
+            .bind(to: tableView.rx.items(cellIdentifier: "feedItemCell", cellType: FeedCell.self)) {(_, feedItem, cell) in
+                
+                cell.titleLabel.text = feedItem.title
+                cell.descriptionLabel.text = feedItem.description
+                cell.selectionStyle = .none
+                
             }
             .disposed(by: bag)
+        
+        tableView.rx.modelSelected(FeedViewModel.self)
+            .bind(to: viewModel.feedSelected)
+            .disposed(by: bag)
+        
     }
 
 }

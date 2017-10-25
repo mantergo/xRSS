@@ -29,6 +29,7 @@
 		DAAC6BE41F9F636000FCAE6E /* Schedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE31F9F44DC00FCAE6E /* Schedulers.swift */; };
 		DAAC6BE61F9F636500FCAE6E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE11F9F44DC00FCAE6E /* ActivityIndicator.swift */; };
 		DAAC6BE71FA096D900FCAE6E /* MBProgressHUD+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE21F9F44DC00FCAE6E /* MBProgressHUD+Rx.swift */; };
+		DAAC6BE91FA0C2CC00FCAE6E /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE81FA0C2CC00FCAE6E /* FeedViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		DAAC6BE11F9F44DC00FCAE6E /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		DAAC6BE21F9F44DC00FCAE6E /* MBProgressHUD+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Rx.swift"; sourceTree = "<group>"; };
 		DAAC6BE31F9F44DC00FCAE6E /* Schedulers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedulers.swift; sourceTree = "<group>"; };
+		DAAC6BE81FA0C2CC00FCAE6E /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		DEEE470CA17DE3E9524A46E9 /* Pods-xRSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xRSS.release.xcconfig"; path = "Pods/Target Support Files/Pods-xRSS/Pods-xRSS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 				DAAC6BCB1F9F367B00FCAE6E /* FeedCellViewModel.swift */,
 				DAAC6BBF1F9F35C400FCAE6E /* ListViewModel.swift */,
 				DAAC6BC11F9F35D100FCAE6E /* FeedListViewModel.swift */,
+				DAAC6BE81FA0C2CC00FCAE6E /* FeedViewModel.swift */,
 				DAAC6BC31F9F35DF00FCAE6E /* NewsViewModel.swift */,
 			);
 			path = ViewModels;
@@ -321,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAAC6BE91FA0C2CC00FCAE6E /* FeedViewModel.swift in Sources */,
 				DAAC6BBC1F9F357900FCAE6E /* FeedListCoordinator.swift in Sources */,
 				DAAC6BC41F9F35DF00FCAE6E /* NewsViewModel.swift in Sources */,
 				DAAC6BCC1F9F367B00FCAE6E /* FeedCellViewModel.swift in Sources */,

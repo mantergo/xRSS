@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import FeedKit
 
+
 class ListCoordinator: Coordinator {
     
     weak var appCoordinator: AppCoordinator!
@@ -32,6 +33,8 @@ class ListCoordinator: Coordinator {
             self.navigationController.pushViewController(vc, animated: true)
             
             viewModel.newsProviderSelected
+                .observeOn(serial)
+                //.trackActivity(self.indicator)
                 .flatMap { newsProvider -> Observable<[FeedKit.RSSFeedItem]> in
             
                     RSSService.shared.getFeed(forURL: newsProvider.url)
@@ -47,9 +50,15 @@ class ListCoordinator: Coordinator {
                                 }
                             }
                         })
-                
                 }
                 .observeOn(main)
+                .flatMap{ (items) -> Observable<[FeedViewModel]> in
+                    var feedArray = [FeedViewModel]()
+                    for item in items {
+                        feedArray.append(FeedViewModel(_title: item.title!, _description: item.description!, _url: item.link!))
+                    }
+                    return Observable.just(feedArray)
+                }
                 .subscribe(onNext: {[weak self] items in
                     self?.appCoordinator.startFeedList(with: items, on: (self?.navigationController)!)
                 })

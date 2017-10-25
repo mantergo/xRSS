@@ -13,9 +13,10 @@ import RxCocoa
 
 class FeedListViewModel{
     
-    var feedItems = Variable<[FeedKit.RSSFeedItem]>([])
+    var feedItems = Variable<[FeedViewModel]>([])
+    let feedSelected = PublishSubject<FeedViewModel>()
     
-    init(items: [FeedKit.RSSFeedItem]) {
+    init(items: [FeedViewModel]) {
         
         self.feedItems.value = items
 

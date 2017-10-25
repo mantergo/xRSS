@@ -9,61 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "xRSS/Coordinators/FeedListCoordinator.swift"
-            timestampString = "530620542.812033"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "start()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "xRSS/Coordinators/ListCoordinator.swift"
-            timestampString = "530620542.812603"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "start()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "xRSS/Coordinators/AppCoordinator.swift"
-            timestampString = "530620542.81316"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "startFeedList(with:on:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "xRSS/Coordinators/FeedListCoordinator.swift"
-            timestampString = "530620542.814188"
+            filePath = "xRSS/ViewModels/FeedListViewModel.swift"
+            timestampString = "530633296.922412"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20"
-            landmarkName = "init(navigationController:items:)"
+            landmarkName = "init(items:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,29 +26,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xRSS/Views/FeedListViewController.swift"
-            timestampString = "530620542.814374"
+            timestampString = "530633296.923128"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "xRSS/Utils/MBProgressHUD+Rx.swift"
-            timestampString = "530620542.814778"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "rx_mbprogresshud_animating"
-            landmarkType = "24">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "xRSS.FeedListViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "xRSS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Paul/Swift/xRSS/xRSS/Views/FeedListViewController.swift"
+                  timestampString = "530626704.595424"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "949">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int, FeedKit.RSSFeedItem, xRSS.FeedCell) -&gt; () in xRSS.FeedListViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "xRSS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Paul/Swift/xRSS/xRSS/Views/FeedListViewController.swift"
+                  timestampString = "530626704.603378"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "721">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

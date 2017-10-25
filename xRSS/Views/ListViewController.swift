@@ -26,6 +26,7 @@ class ListViewController: UIViewController {
         .observeOn(main)
             .bind(to: tableView.rx.items(cellIdentifier: "listItemCell", cellType: UITableViewCell.self)) { (_, newsProvider, cell) in
                 cell.textLabel?.text = newsProvider.title
+                cell.selectionStyle = .none
             }
             .disposed(by: bag)
         

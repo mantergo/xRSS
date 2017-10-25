@@ -13,13 +13,13 @@ import RxCocoa
 
 
 extension MBProgressHUD {
-    
+
     var rx_mbprogresshud_animating: AnyObserver<Bool> {
-        
+
         return AnyObserver { event in
-            
+
             MainScheduler.ensureExecutingOnScheduler()
-            
+
             switch (event) {
             case .next(let value):
                 if value {
@@ -38,3 +38,4 @@ extension MBProgressHUD {
         }
     }
 }
+

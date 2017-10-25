@@ -8,15 +8,17 @@
 
 import UIKit
 import FeedKit
+import SafariServices
+import RxSwift
 
 class FeedListCoordinator: Coordinator {
     
     weak var appCoordinator: AppCoordinator!
     weak var navigationController: UINavigationController!
-    var feedItems: [FeedKit.RSSFeedItem]!
+    var feedItems: [FeedViewModel]!
+    var bag = DisposeBag()
     
-    
-    init(navigationController: UINavigationController, items: [FeedKit.RSSFeedItem]) {
+    init(navigationController: UINavigationController, items: [FeedViewModel]) {
         
         self.navigationController = navigationController
         self.feedItems = items
@@ -30,6 +32,13 @@ class FeedListCoordinator: Coordinator {
             let viewModel = FeedListViewModel(items: self.feedItems)
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
+            
+            viewModel.feedSelected
+                .subscribe(onNext: { item in
+                    
+                    UIApplication.shared.open(item.url, options: [:])
+                    
+                }).disposed(by: bag)
             
         }
 

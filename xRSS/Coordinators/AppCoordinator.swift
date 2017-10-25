@@ -20,7 +20,7 @@ class AppCoordinator: Coordinator {
     
     var window: UIWindow
     var coordinators = [String : Coordinator]()
-    var feedItems = Variable<[FeedKit.RSSFeedItem]>([])
+    var feedItems = Variable<[FeedViewModel]>([])
     
     init(window: UIWindow)
     {
@@ -54,7 +54,7 @@ class AppCoordinator: Coordinator {
         
     }
     
-    func startFeedList(with feed: [FeedKit.RSSFeedItem], on navigationController: UINavigationController){
+    func startFeedList(with feed: [FeedViewModel], on navigationController: UINavigationController){
         
         var feedListCoordinator: FeedListCoordinator!
         
