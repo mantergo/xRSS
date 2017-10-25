@@ -8,6 +8,7 @@ target 'xRSS' do
   pod 'RxCocoa'
   pod 'Realm'
   pod 'FeedKit'
+  pod 'MBProgressHUD'
 
 
   # Pods for xRSS

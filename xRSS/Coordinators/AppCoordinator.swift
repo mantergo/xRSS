@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import RxSwift
+import FeedKit
 
-protocol Coordinator: class {
+@objc protocol Coordinator: class {
     
     func start()
     
@@ -18,9 +20,11 @@ class AppCoordinator: Coordinator {
     
     var window: UIWindow
     var coordinators = [String : Coordinator]()
+    var feedItems = Variable<[FeedKit.RSSFeedItem]>([])
     
     init(window: UIWindow)
     {
+        
         self.window = window
         self.window.makeKeyAndVisible()
         
@@ -48,8 +52,34 @@ class AppCoordinator: Coordinator {
         coordinators.updateValue(listCoordinator, forKey: "list")
         listCoordinator.start()
         
+    }
+    
+    func startFeedList(with feed: [FeedKit.RSSFeedItem], on navigationController: UINavigationController){
+        
+        var feedListCoordinator: FeedListCoordinator!
+        
+        feedListCoordinator = FeedListCoordinator(navigationController: navigationController, items: feed)
+        feedListCoordinator.appCoordinator = self
+        
+        coordinators.updateValue(feedListCoordinator, forKey: "feedList")
+        feedListCoordinator.start()
         
         
     }
+    
+    
+    
+    func handleResult(message: String, type: Bool) {
+        
+        let resultTitle =  type ? "Success" : "Error"
+        let resultMessage = message
+        let alertController = UIAlertController(title: resultTitle, message: resultMessage, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+        })
+        alertController.addAction(ok)
+        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    
     
 }

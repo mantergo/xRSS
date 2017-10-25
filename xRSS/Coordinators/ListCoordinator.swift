@@ -12,8 +12,9 @@ import FeedKit
 
 class ListCoordinator: Coordinator {
     
-    weak var appCoordinator: Coordinator!
+    weak var appCoordinator: AppCoordinator!
     weak var navigationController: UINavigationController!
+    var indicator = ActivityIndicator()
     var bag = DisposeBag()
     
     init (navigationController: UINavigationController) {
@@ -34,9 +35,23 @@ class ListCoordinator: Coordinator {
                 .flatMap { newsProvider -> Observable<[FeedKit.RSSFeedItem]> in
             
                     RSSService.shared.getFeed(forURL: newsProvider.url)
+                       // .delay(2.0, scheduler: MainScheduler.asyncInstance)
+                        .trackActivity(self.indicator)
+                        .catchError({[weak self] (error) -> Observable<[FeedKit.RSSFeedItem]> in
+                            print(error)
+                            self?.appCoordinator.handleResult(message: error.localizedDescription, type: false)
+                            return Observable.create{ observer in
+                                observer.on(.next([]))
+                                return Disposables.create {
+                                    print("disposed")
+                                }
+                            }
+                        })
                 
-                }.subscribe(onNext: { items in
-                    print(items)
+                }
+                .observeOn(main)
+                .subscribe(onNext: {[weak self] items in
+                    self?.appCoordinator.startFeedList(with: items, on: (self?.navigationController)!)
                 })
                 .disposed(by: bag)
             

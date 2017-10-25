@@ -44,9 +44,6 @@ class RSSService: NSObject {
                 case let .failure(error): observer.onError(error)
                     
                 }
-//                DispatchQueue.main.async {
-//                    // ..and update the UI
-//                }
             }
             
         return Disposables.create()

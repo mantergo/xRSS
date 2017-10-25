@@ -20,7 +20,7 @@
 		DAAC6BC01F9F35C400FCAE6E /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BBF1F9F35C400FCAE6E /* ListViewModel.swift */; };
 		DAAC6BC21F9F35D100FCAE6E /* FeedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BC11F9F35D100FCAE6E /* FeedListViewModel.swift */; };
 		DAAC6BC41F9F35DF00FCAE6E /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BC31F9F35DF00FCAE6E /* NewsViewModel.swift */; };
-		DAAC6BC81F9F361C00FCAE6E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BC71F9F361C00FCAE6E /* FeedViewController.swift */; };
+		DAAC6BC81F9F361C00FCAE6E /* FeedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BC71F9F361C00FCAE6E /* FeedListViewController.swift */; };
 		DAAC6BCA1F9F366C00FCAE6E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BC91F9F366C00FCAE6E /* FeedCell.swift */; };
 		DAAC6BCC1F9F367B00FCAE6E /* FeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BCB1F9F367B00FCAE6E /* FeedCellViewModel.swift */; };
 		DAAC6BD11F9F40E600FCAE6E /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BD01F9F40E600FCAE6E /* FeedItem.swift */; };
@@ -28,6 +28,7 @@
 		DAAC6BD71F9F414600FCAE6E /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BD61F9F414600FCAE6E /* DBService.swift */; };
 		DAAC6BE41F9F636000FCAE6E /* Schedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE31F9F44DC00FCAE6E /* Schedulers.swift */; };
 		DAAC6BE61F9F636500FCAE6E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE11F9F44DC00FCAE6E /* ActivityIndicator.swift */; };
+		DAAC6BE71FA096D900FCAE6E /* MBProgressHUD+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE21F9F44DC00FCAE6E /* MBProgressHUD+Rx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +48,7 @@
 		DAAC6BBF1F9F35C400FCAE6E /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		DAAC6BC11F9F35D100FCAE6E /* FeedListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListViewModel.swift; sourceTree = "<group>"; };
 		DAAC6BC31F9F35DF00FCAE6E /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
-		DAAC6BC71F9F361C00FCAE6E /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		DAAC6BC71F9F361C00FCAE6E /* FeedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListViewController.swift; sourceTree = "<group>"; };
 		DAAC6BC91F9F366C00FCAE6E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		DAAC6BCB1F9F367B00FCAE6E /* FeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellViewModel.swift; sourceTree = "<group>"; };
 		DAAC6BD01F9F40E600FCAE6E /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
@@ -139,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				DAAC6BA71F9F34B900FCAE6E /* ListViewController.swift */,
-				DAAC6BC71F9F361C00FCAE6E /* FeedViewController.swift */,
+				DAAC6BC71F9F361C00FCAE6E /* FeedListViewController.swift */,
 				DAAC6BC91F9F366C00FCAE6E /* FeedCell.swift */,
 			);
 			path = Views;
@@ -280,6 +281,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-xRSS/Pods-xRSS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -287,6 +289,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -321,7 +324,7 @@
 				DAAC6BBC1F9F357900FCAE6E /* FeedListCoordinator.swift in Sources */,
 				DAAC6BC41F9F35DF00FCAE6E /* NewsViewModel.swift in Sources */,
 				DAAC6BCC1F9F367B00FCAE6E /* FeedCellViewModel.swift in Sources */,
-				DAAC6BC81F9F361C00FCAE6E /* FeedViewController.swift in Sources */,
+				DAAC6BC81F9F361C00FCAE6E /* FeedListViewController.swift in Sources */,
 				DAAC6BBA1F9F356500FCAE6E /* ListCoordinator.swift in Sources */,
 				DAAC6BCA1F9F366C00FCAE6E /* FeedCell.swift in Sources */,
 				DAAC6BD11F9F40E600FCAE6E /* FeedItem.swift in Sources */,
@@ -335,6 +338,7 @@
 				DAAC6BD41F9F410A00FCAE6E /* RSSService.swift in Sources */,
 				DAAC6BE61F9F636500FCAE6E /* ActivityIndicator.swift in Sources */,
 				DAAC6BBE1F9F359900FCAE6E /* NewsCoordinator.swift in Sources */,
+				DAAC6BE71FA096D900FCAE6E /* MBProgressHUD+Rx.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
