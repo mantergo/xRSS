@@ -65,8 +65,6 @@ class ListViewModel: ListVM {
                 self?.feedReady.onNext(items)
             })
             .disposed(by: bag)
-        
-
     }
     
 }

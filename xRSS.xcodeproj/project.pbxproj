@@ -22,7 +22,6 @@
 		DAAC6BC41F9F35DF00FCAE6E /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BC31F9F35DF00FCAE6E /* NewsViewModel.swift */; };
 		DAAC6BC81F9F361C00FCAE6E /* FeedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BC71F9F361C00FCAE6E /* FeedListViewController.swift */; };
 		DAAC6BCA1F9F366C00FCAE6E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BC91F9F366C00FCAE6E /* FeedCell.swift */; };
-		DAAC6BCC1F9F367B00FCAE6E /* FeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BCB1F9F367B00FCAE6E /* FeedCellViewModel.swift */; };
 		DAAC6BD41F9F410A00FCAE6E /* RSSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BD31F9F410A00FCAE6E /* RSSService.swift */; };
 		DAAC6BD71F9F414600FCAE6E /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BD61F9F414600FCAE6E /* DBService.swift */; };
 		DAAC6BE41F9F636000FCAE6E /* Schedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE31F9F44DC00FCAE6E /* Schedulers.swift */; };
@@ -50,7 +49,6 @@
 		DAAC6BC31F9F35DF00FCAE6E /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		DAAC6BC71F9F361C00FCAE6E /* FeedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListViewController.swift; sourceTree = "<group>"; };
 		DAAC6BC91F9F366C00FCAE6E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
-		DAAC6BCB1F9F367B00FCAE6E /* FeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellViewModel.swift; sourceTree = "<group>"; };
 		DAAC6BD31F9F410A00FCAE6E /* RSSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSService.swift; sourceTree = "<group>"; };
 		DAAC6BD61F9F414600FCAE6E /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		DAAC6BE11F9F44DC00FCAE6E /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 		DAAC6BCD1F9F3E2500FCAE6E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				DAAC6BCB1F9F367B00FCAE6E /* FeedCellViewModel.swift */,
 				DAAC6BBF1F9F35C400FCAE6E /* ListViewModel.swift */,
 				DAAC6BC11F9F35D100FCAE6E /* FeedListViewModel.swift */,
 				DAAC6BE81FA0C2CC00FCAE6E /* FeedViewModel.swift */,
@@ -324,7 +321,6 @@
 				DAAC6BE91FA0C2CC00FCAE6E /* FeedViewModel.swift in Sources */,
 				DAAC6BBC1F9F357900FCAE6E /* FeedListCoordinator.swift in Sources */,
 				DAAC6BC41F9F35DF00FCAE6E /* NewsViewModel.swift in Sources */,
-				DAAC6BCC1F9F367B00FCAE6E /* FeedCellViewModel.swift in Sources */,
 				DAAC6BC81F9F361C00FCAE6E /* FeedListViewController.swift in Sources */,
 				DAAC6BBA1F9F356500FCAE6E /* ListCoordinator.swift in Sources */,
 				DAAC6BCA1F9F366C00FCAE6E /* FeedCell.swift in Sources */,
