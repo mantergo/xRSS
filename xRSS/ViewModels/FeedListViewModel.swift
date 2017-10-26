@@ -11,10 +11,17 @@ import FeedKit
 import RxSwift
 import RxCocoa
 
+protocol FeedListVM {
+    
+    var feedItems: Variable<[FeedViewModel]> {get set}
+    var feedSelected: PublishSubject<FeedViewModel> {get set}
+    
+}
+
 class FeedListViewModel{
     
     var feedItems = Variable<[FeedViewModel]>([])
-    let feedSelected = PublishSubject<FeedViewModel>()
+    var feedSelected = PublishSubject<FeedViewModel>()
     
     init(items: [FeedViewModel]) {
         

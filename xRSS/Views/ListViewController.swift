@@ -12,7 +12,7 @@ import RxCocoa
 
 class ListViewController: UIViewController {
     
-    var viewModel: ListViewModel!
+    var viewModel: ListVM!
     var bag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,7 +22,7 @@ class ListViewController: UIViewController {
         navigationItem.title = "Choose news provider"
         tableView.rowHeight = 60
        
-        viewModel.newsProviders.asObservable()
+        newsProviders.asObservable()
         .observeOn(main)
             .bind(to: tableView.rx.items(cellIdentifier: "listItemCell", cellType: UITableViewCell.self)) { (_, newsProvider, cell) in
                 cell.textLabel?.text = newsProvider.title
@@ -36,10 +36,7 @@ class ListViewController: UIViewController {
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
 
 
 }

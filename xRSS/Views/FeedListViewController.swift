@@ -14,7 +14,7 @@ import FeedKit
 
 class FeedListViewController: UIViewController {
     
-    var viewModel: FeedListViewModel!
+    var viewModel: FeedListVM!
     @IBOutlet weak var tableView: UITableView!
     var bag = DisposeBag()
     
