@@ -16,7 +16,7 @@ class FeedListViewController: UIViewController {
     
     var viewModel: FeedListVM!
     @IBOutlet weak var tableView: UITableView!
-    var bag = DisposeBag()
+    private var bag:DisposeBag? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,8 @@ class FeedListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+         bag = DisposeBag()
+        
         viewModel.feedItems.asObservable()
             .observeOn(main)
             .bind(to: tableView.rx.items(cellIdentifier: "feedItemCell", cellType: FeedCell.self)) {(_, feedItem, cell) in
@@ -37,12 +39,19 @@ class FeedListViewController: UIViewController {
                 cell.selectionStyle = .none
                 
             }
-            .disposed(by: bag)
+            .disposed(by: bag!)
         
         tableView.rx.modelSelected(FeedViewModel.self)
             .bind(to: viewModel.feedSelected)
-            .disposed(by: bag)
+            .disposed(by: bag!)
         
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        bag = nil
+        
+    }
+    
 
 }

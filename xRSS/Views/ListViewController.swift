@@ -13,26 +13,39 @@ import RxCocoa
 class ListViewController: UIViewController {
     
     var viewModel: ListVM!
-    var bag = DisposeBag()
+    private var bag:DisposeBag? = nil
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         navigationItem.title = "Choose news provider"
         tableView.rowHeight = 60
-       
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+         bag = DisposeBag()
         newsProviders.asObservable()
-        .observeOn(main)
+            .observeOn(main)
             .bind(to: tableView.rx.items(cellIdentifier: "listItemCell", cellType: UITableViewCell.self)) { (_, newsProvider, cell) in
                 cell.textLabel?.text = newsProvider.title
                 cell.selectionStyle = .none
             }
-            .disposed(by: bag)
+            .disposed(by: bag!)
         
         tableView.rx.modelSelected(NewsProvider.self)
-        .bind(to: viewModel.newsProviderSelected)
-            .disposed(by: bag)
+            .bind(to: viewModel.newsProviderSelected)
+            .disposed(by: bag!)
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        bag = nil
         
     }
 

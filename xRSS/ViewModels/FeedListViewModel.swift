@@ -18,7 +18,7 @@ protocol FeedListVM {
     
 }
 
-class FeedListViewModel{
+class FeedListViewModel: FeedListVM{
     
     var feedItems = Variable<[FeedViewModel]>([])
     var feedSelected = PublishSubject<FeedViewModel>()
