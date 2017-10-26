@@ -35,7 +35,7 @@ class FeedListViewController: UIViewController {
             .bind(to: tableView.rx.items(cellIdentifier: "feedItemCell", cellType: FeedCell.self)) {(_, feedItem, cell) in
                 
                 cell.titleLabel.text = feedItem.title
-                cell.descriptionLabel.text = feedItem.description
+                cell.dateLabel.text = feedItem.date
                 cell.selectionStyle = .none
                 
             }

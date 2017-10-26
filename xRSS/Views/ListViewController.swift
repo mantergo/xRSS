@@ -26,10 +26,9 @@ class ListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
+
          bag = DisposeBag()
-        newsProviders.asObservable()
+         newsProviders.asObservable()
             .observeOn(main)
             .bind(to: tableView.rx.items(cellIdentifier: "listItemCell", cellType: UITableViewCell.self)) { (_, newsProvider, cell) in
                 cell.textLabel?.text = newsProvider.title
@@ -48,9 +47,6 @@ class ListViewController: UIViewController {
         bag = nil
         
     }
-
-
-
 
 }
 

@@ -36,6 +36,7 @@ class ListViewModel: ListVM {
     init() {
         
         newsProviderSelected
+    
             .observeOn(serial)
             .trackActivity(self.indicator)
             .flatMap { newsProvider -> Observable<[FeedKit.RSSFeedItem]> in
@@ -57,7 +58,7 @@ class ListViewModel: ListVM {
             .flatMap{ (items) -> Observable<[FeedViewModel]> in
                 var feedArray = [FeedViewModel]()
                 for item in items {
-                    feedArray.append(FeedViewModel(_title: item.title!, _description: item.description!, _url: item.link!))
+                    feedArray.append(FeedViewModel(_title: item.title!, _description: item.description!, _url: item.link!, _date: item.pubDate!))
                 }
                 return Observable.just(feedArray)
             }

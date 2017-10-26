@@ -63,38 +63,39 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedItemCell" rowHeight="90" id="Off-7g-E19" customClass="FeedCell" customModule="xRSS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedItemCell" rowHeight="147" id="Off-7g-E19" customClass="FeedCell" customModule="xRSS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="147"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Off-7g-E19" id="iZy-OB-1Q2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="146.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIr-eb-ltJ">
-                                                    <rect key="frame" x="18" y="8" width="339" height="74"/>
+                                                    <rect key="frame" x="18" y="8" width="339" height="88.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONb-oE-GQO">
-                                                    <rect key="frame" x="18" y="90" width="339" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONb-oE-GQO">
+                                                    <rect key="frame" x="18" y="104.5" width="339" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="UIr-eb-ltJ" secondAttribute="bottom" constant="7.5" id="6yu-bT-WjS"/>
+                                                <constraint firstAttribute="bottom" secondItem="UIr-eb-ltJ" secondAttribute="bottom" constant="50" id="6yu-bT-WjS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="UIr-eb-ltJ" secondAttribute="trailing" constant="10" id="FB6-8L-O6j"/>
                                                 <constraint firstItem="ONb-oE-GQO" firstAttribute="top" secondItem="UIr-eb-ltJ" secondAttribute="bottom" constant="8" id="URe-Zk-bCS"/>
                                                 <constraint firstItem="UIr-eb-ltJ" firstAttribute="top" secondItem="iZy-OB-1Q2" secondAttribute="topMargin" id="ZeS-Jp-J46"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ONb-oE-GQO" secondAttribute="trailing" constant="10" id="e4I-nK-MUF"/>
                                                 <constraint firstItem="UIr-eb-ltJ" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leadingMargin" constant="10" id="fT2-qf-iwn"/>
                                                 <constraint firstItem="ONb-oE-GQO" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leadingMargin" constant="10" id="pBE-49-ZqV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ONb-oE-GQO" secondAttribute="bottom" constant="13" id="rk9-gW-2DD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="descriptionLabel" destination="ONb-oE-GQO" id="BKy-wj-mtL"/>
+                                            <outlet property="dateLabel" destination="ONb-oE-GQO" id="ZLv-DS-0Ve"/>
                                             <outlet property="titleLabel" destination="UIr-eb-ltJ" id="O5I-HY-fxv"/>
                                         </connections>
                                     </tableViewCell>
