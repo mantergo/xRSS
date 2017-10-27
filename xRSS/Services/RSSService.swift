@@ -40,13 +40,15 @@ class RSSService: NSObject {
                     
                 case .atom(_):   observer.onError(CustomError.wrongFormatError)
                 case let .rss(feed):  observer.onNext(feed.items!)
+                    
                 case .json(_):    observer.onError(CustomError.wrongFormatError)
                 case let .failure(error): observer.onError(error)
                     
                 }
+                observer.onCompleted()
             }
             
-        return Disposables.create()
+            return Disposables.create{ print("disposed")}
             
         }
     

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9305DCCBF767C9D20C26C1B8 /* Pods_xRSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F869368733E8A296FC64F5 /* Pods_xRSS.framework */; };
 		DA8460881FA1D5E800A5C48A /* NewsProviderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8460871FA1D5E800A5C48A /* NewsProviderModel.swift */; };
+		DA84608A1FA330F200A5C48A /* RxAlamofire+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8460891FA330F200A5C48A /* RxAlamofire+UIImage.swift */; };
 		DAAC6BA61F9F34B900FCAE6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BA51F9F34B900FCAE6E /* AppDelegate.swift */; };
 		DAAC6BA81F9F34B900FCAE6E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BA71F9F34B900FCAE6E /* ListViewController.swift */; };
 		DAAC6BAB1F9F34B900FCAE6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAC6BA91F9F34B900FCAE6E /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		68F869368733E8A296FC64F5 /* Pods_xRSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xRSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC51122C7B75602D57DA8687 /* Pods-xRSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xRSS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xRSS/Pods-xRSS.debug.xcconfig"; sourceTree = "<group>"; };
 		DA8460871FA1D5E800A5C48A /* NewsProviderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsProviderModel.swift; sourceTree = "<group>"; };
+		DA8460891FA330F200A5C48A /* RxAlamofire+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxAlamofire+UIImage.swift"; sourceTree = "<group>"; };
 		DAAC6BA21F9F34B800FCAE6E /* xRSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xRSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAC6BA51F9F34B900FCAE6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAAC6BA71F9F34B900FCAE6E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				DAAC6BE11F9F44DC00FCAE6E /* ActivityIndicator.swift */,
+				DA8460891FA330F200A5C48A /* RxAlamofire+UIImage.swift */,
 				DAAC6BE21F9F44DC00FCAE6E /* MBProgressHUD+Rx.swift */,
 				DAAC6BE31F9F44DC00FCAE6E /* Schedulers.swift */,
 			);
@@ -277,17 +280,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-xRSS/Pods-xRSS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
@@ -330,6 +339,7 @@
 				DAAC6BA81F9F34B900FCAE6E /* ListViewController.swift in Sources */,
 				DAAC6BA61F9F34B900FCAE6E /* AppDelegate.swift in Sources */,
 				DAAC6BD71F9F414600FCAE6E /* DBService.swift in Sources */,
+				DA84608A1FA330F200A5C48A /* RxAlamofire+UIImage.swift in Sources */,
 				DAAC6BC21F9F35D100FCAE6E /* FeedListViewModel.swift in Sources */,
 				DAAC6BE41F9F636000FCAE6E /* Schedulers.swift in Sources */,
 				DAAC6BD41F9F410A00FCAE6E /* RSSService.swift in Sources */,

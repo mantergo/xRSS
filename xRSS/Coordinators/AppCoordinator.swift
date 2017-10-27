@@ -10,13 +10,22 @@ import UIKit
 import RxSwift
 import FeedKit
 
-@objc protocol Coordinator: class {
+protocol Coordinator {
     
     func start()
     
 }
 
-class AppCoordinator: Coordinator {
+protocol AppCoordinatorProtocol: class, Coordinator {
+    
+    func start()
+    func startList(with navigationController:UINavigationController)
+    func startFeedList(with feed: [FeedViewModel], on navigationController: UINavigationController)
+    func handleResult(message: String, type: Bool)
+    
+}
+
+class AppCoordinator: AppCoordinatorProtocol {
     
     var window: UIWindow
     var coordinators = [String : Coordinator]()
@@ -64,11 +73,8 @@ class AppCoordinator: Coordinator {
         coordinators.updateValue(feedListCoordinator, forKey: "feedList")
         feedListCoordinator.start()
         
-        
     }
-    
-    
-    
+
     func handleResult(message: String, type: Bool) {
         
         let resultTitle =  type ? "Success" : "Error"

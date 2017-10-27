@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -71,7 +71,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIr-eb-ltJ">
-                                                    <rect key="frame" x="18" y="8" width="339" height="88.5"/>
+                                                    <rect key="frame" x="144" y="8" width="213" height="89"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -82,6 +82,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BWX-8t-edX">
+                                                    <rect key="frame" x="15" y="2" width="121" height="101"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="101" id="Hwz-Zj-RQz"/>
+                                                        <constraint firstAttribute="width" constant="121" id="iVe-bt-8w0"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="UIr-eb-ltJ" secondAttribute="bottom" constant="50" id="6yu-bT-WjS"/>
@@ -89,13 +96,16 @@
                                                 <constraint firstItem="ONb-oE-GQO" firstAttribute="top" secondItem="UIr-eb-ltJ" secondAttribute="bottom" constant="8" id="URe-Zk-bCS"/>
                                                 <constraint firstItem="UIr-eb-ltJ" firstAttribute="top" secondItem="iZy-OB-1Q2" secondAttribute="topMargin" id="ZeS-Jp-J46"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ONb-oE-GQO" secondAttribute="trailing" constant="10" id="e4I-nK-MUF"/>
-                                                <constraint firstItem="UIr-eb-ltJ" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leadingMargin" constant="10" id="fT2-qf-iwn"/>
+                                                <constraint firstItem="BWX-8t-edX" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leadingMargin" constant="7" id="fFn-rq-h2V"/>
+                                                <constraint firstItem="UIr-eb-ltJ" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leadingMargin" constant="136" id="fT2-qf-iwn"/>
                                                 <constraint firstItem="ONb-oE-GQO" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leadingMargin" constant="10" id="pBE-49-ZqV"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ONb-oE-GQO" secondAttribute="bottom" constant="13" id="rk9-gW-2DD"/>
+                                                <constraint firstItem="BWX-8t-edX" firstAttribute="centerY" secondItem="UIr-eb-ltJ" secondAttribute="centerY" id="tdS-Y6-t90"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="ONb-oE-GQO" id="ZLv-DS-0Ve"/>
+                                            <outlet property="feedImage" destination="BWX-8t-edX" id="IVg-gG-COQ"/>
                                             <outlet property="titleLabel" destination="UIr-eb-ltJ" id="O5I-HY-fxv"/>
                                         </connections>
                                     </tableViewCell>

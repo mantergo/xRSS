@@ -13,7 +13,7 @@ import RxSwift
 
 class FeedListCoordinator: Coordinator {
     
-    weak var appCoordinator: AppCoordinator!
+    weak var appCoordinator: AppCoordinatorProtocol!
     weak var navigationController: UINavigationController!
     var feedItems: [FeedViewModel]!
     var bag = DisposeBag()

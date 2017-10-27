@@ -9,6 +9,9 @@ target 'xRSS' do
   pod 'Realm'
   pod 'FeedKit'
   pod 'MBProgressHUD'
+  pod 'Alamofire'
+  pod 'AlamofireImage'
+  pod 'RxAlamofire'
 
 
   # Pods for xRSS

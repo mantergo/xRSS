@@ -28,7 +28,7 @@ class FeedListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-         bag = DisposeBag()
+        bag = DisposeBag()
         
         viewModel.feedItems.asObservable()
             .observeOn(main)
@@ -37,6 +37,7 @@ class FeedListViewController: UIViewController {
                 cell.titleLabel.text = feedItem.title
                 cell.dateLabel.text = feedItem.date
                 cell.selectionStyle = .none
+                cell.feedImage.image = feedItem.image
                 
             }
             .disposed(by: bag!)
