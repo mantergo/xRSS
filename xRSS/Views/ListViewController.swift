@@ -14,6 +14,7 @@ import MBProgressHUD
 class ListViewController: UIViewController {
     
     var viewModel: ListVM!
+    
     private var bag:DisposeBag? = nil
     
     @IBOutlet weak var tableView: UITableView!
@@ -29,6 +30,7 @@ class ListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
 
          bag = DisposeBag()
+        
          newsProviders.asObservable()
             .observeOn(main)
             .bind(to: tableView.rx.items(cellIdentifier: "listItemCell", cellType: UITableViewCell.self)) { (_, newsProvider, cell) in

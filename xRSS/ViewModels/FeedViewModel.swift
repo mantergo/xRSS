@@ -2,41 +2,46 @@
 //  FeedViewModel.swift
 //  xRSS
 //
-//  Created by Pavel Lopatine on 10/25/17.
+//  Created by Pavel Lopatine on 10/30/17.
 //  Copyright © 2017 Pavel Lopatine. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import AlamofireImage
 import RxCocoa
 import RxSwift
-import Alamofire
 
-class FeedViewModel {
+protocol FeedVM {
     
-    var title = ""
-    var description = ""
-    var url:URL!
-    var date:String = ""
-    var image: UIImage!
+    var title: Variable<String> { get set }
+    var description: Variable<String> { get set }
+    var url: Variable<URL> { get set }
+    var date: Variable<String> { get set }
+    var image: Variable<UIImage> { get set }
     
-    init (_title: String, _description: String, _url: String, _date:Date, _image: URL) {
+}
+
+class FeedViewModel: FeedVM {
+    
+    var title = Variable<String>("")
+    var description = Variable<String>("")
+    var url = Variable<URL>(URL(string:"https://www.google.by")!)
+    var date = Variable<String>("")
+    var image = Variable<UIImage>(UIImage())
+    
+    var bag = DisposeBag()
+    
+    init (model: FeedModel) {
         
-        title = _title
-        description = _description
-        url = URL(string: _url)!
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm     dd.MM.yyyy"
-        let dateString = dateFormatter.string(from: _date as Date)
-        date = dateString
-        //image = _image
-        Alamofire.request(_image).responseImage { response in
+        model.title.asObservable().bind(to: title).disposed(by: bag)
+        model.description.asObservable().bind(to: description).disposed(by: bag)
+        model.date.asObservable().bind(to: date).disposed(by: bag)
+        model.image.asObservable().bind(to: image).disposed(by: bag)
+        model.url.asObservable().bind(to: url).disposed(by: bag)
         
-            if let imageT = response.result.value {
-                self.image = imageT
-            }
     }
-    }
+    
+    
+    
+    
     
 }

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '150678374841D766DFE93C5229D82D06'
-               BlueprintName = 'RxSwift'
+               BlueprintIdentifier = '76F2E925AD1762D1C52939ED77C55036'
+               BlueprintName = 'HTMLString'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RxSwift.framework'>
+               BuildableName = 'HTMLString.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

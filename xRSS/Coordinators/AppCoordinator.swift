@@ -20,7 +20,8 @@ protocol AppCoordinatorProtocol: class, Coordinator {
     
     func start()
     func startList(with navigationController:UINavigationController)
-    func startFeedList(with feed: [FeedViewModel], on navigationController: UINavigationController)
+    func startFeedList(with feed: [FeedModel], on navigationController: UINavigationController)
+    func startDetailFeed(with feed: FeedModel, on navigationController: UINavigationController)
     func handleResult(message: String, type: Bool)
     
 }
@@ -29,7 +30,7 @@ class AppCoordinator: AppCoordinatorProtocol {
     
     var window: UIWindow
     var coordinators = [String : Coordinator]()
-    var feedItems = Variable<[FeedViewModel]>([])
+    var feedItems = Variable<[FeedModel]>([])
     
     init(window: UIWindow)
     {
@@ -63,7 +64,7 @@ class AppCoordinator: AppCoordinatorProtocol {
         
     }
     
-    func startFeedList(with feed: [FeedViewModel], on navigationController: UINavigationController){
+    func startFeedList(with feed: [FeedModel], on navigationController: UINavigationController){
         
         var feedListCoordinator: FeedListCoordinator!
         
@@ -72,6 +73,19 @@ class AppCoordinator: AppCoordinatorProtocol {
         
         coordinators.updateValue(feedListCoordinator, forKey: "feedList")
         feedListCoordinator.start()
+        
+    }
+    
+    func startDetailFeed(with feed: FeedModel, on navigationController:UINavigationController){
+        
+        var detailFeedCoordinator: DetailFeedCoordinator!
+        
+        detailFeedCoordinator = DetailFeedCoordinator(navigationController: navigationController, item: feed)
+        detailFeedCoordinator.appCoordinator = self
+        
+        coordinators.updateValue(detailFeedCoordinator, forKey: "detailFeed")
+       detailFeedCoordinator.start()
+        
         
     }
 

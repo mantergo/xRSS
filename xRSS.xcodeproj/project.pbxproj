@@ -28,7 +28,11 @@
 		DAAC6BE41F9F636000FCAE6E /* Schedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE31F9F44DC00FCAE6E /* Schedulers.swift */; };
 		DAAC6BE61F9F636500FCAE6E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE11F9F44DC00FCAE6E /* ActivityIndicator.swift */; };
 		DAAC6BE71FA096D900FCAE6E /* MBProgressHUD+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE21F9F44DC00FCAE6E /* MBProgressHUD+Rx.swift */; };
-		DAAC6BE91FA0C2CC00FCAE6E /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE81FA0C2CC00FCAE6E /* FeedViewModel.swift */; };
+		DAAC6BE91FA0C2CC00FCAE6E /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BE81FA0C2CC00FCAE6E /* FeedModel.swift */; };
+		DAE020851FA7105A009DA6CF /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE020841FA7105A009DA6CF /* FeedViewModel.swift */; };
+		DAF25B141FA746D700D451AC /* DetailFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF25B131FA746D700D451AC /* DetailFeedViewModel.swift */; };
+		DAF25B161FA7472D00D451AC /* DetailFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF25B151FA7472D00D451AC /* DetailFeedViewController.swift */; };
+		DAF25B181FA7474500D451AC /* DetailFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF25B171FA7474500D451AC /* DetailFeedCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,7 +60,11 @@
 		DAAC6BE11F9F44DC00FCAE6E /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		DAAC6BE21F9F44DC00FCAE6E /* MBProgressHUD+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Rx.swift"; sourceTree = "<group>"; };
 		DAAC6BE31F9F44DC00FCAE6E /* Schedulers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedulers.swift; sourceTree = "<group>"; };
-		DAAC6BE81FA0C2CC00FCAE6E /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		DAAC6BE81FA0C2CC00FCAE6E /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		DAE020841FA7105A009DA6CF /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		DAF25B131FA746D700D451AC /* DetailFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedViewModel.swift; sourceTree = "<group>"; };
+		DAF25B151FA7472D00D451AC /* DetailFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedViewController.swift; sourceTree = "<group>"; };
+		DAF25B171FA7474500D451AC /* DetailFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedCoordinator.swift; sourceTree = "<group>"; };
 		DEEE470CA17DE3E9524A46E9 /* Pods-xRSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xRSS.release.xcconfig"; path = "Pods/Target Support Files/Pods-xRSS/Pods-xRSS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,9 +137,10 @@
 			isa = PBXGroup;
 			children = (
 				DAAC6BBF1F9F35C400FCAE6E /* ListViewModel.swift */,
+				DAF25B131FA746D700D451AC /* DetailFeedViewModel.swift */,
 				DAAC6BC11F9F35D100FCAE6E /* FeedListViewModel.swift */,
-				DAAC6BE81FA0C2CC00FCAE6E /* FeedViewModel.swift */,
 				DAAC6BC31F9F35DF00FCAE6E /* NewsViewModel.swift */,
+				DAE020841FA7105A009DA6CF /* FeedViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -140,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				DAAC6BA71F9F34B900FCAE6E /* ListViewController.swift */,
+				DAF25B151FA7472D00D451AC /* DetailFeedViewController.swift */,
 				DAAC6BC71F9F361C00FCAE6E /* FeedListViewController.swift */,
 				DAAC6BC91F9F366C00FCAE6E /* FeedCell.swift */,
 			);
@@ -152,6 +162,7 @@
 				DAAC6BB71F9F354E00FCAE6E /* AppCoordinator.swift */,
 				DAAC6BB91F9F356500FCAE6E /* ListCoordinator.swift */,
 				DAAC6BBB1F9F357900FCAE6E /* FeedListCoordinator.swift */,
+				DAF25B171FA7474500D451AC /* DetailFeedCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -159,6 +170,7 @@
 		DAAC6BD21F9F40ED00FCAE6E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DAAC6BE81FA0C2CC00FCAE6E /* FeedModel.swift */,
 				DA8460871FA1D5E800A5C48A /* NewsProviderModel.swift */,
 			);
 			path = Models;
@@ -283,6 +295,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
+				"${BUILT_PRODUCTS_DIR}/HTMLString/HTMLString.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
@@ -294,6 +307,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLString.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
@@ -327,10 +341,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAAC6BE91FA0C2CC00FCAE6E /* FeedViewModel.swift in Sources */,
+				DAF25B161FA7472D00D451AC /* DetailFeedViewController.swift in Sources */,
+				DAE020851FA7105A009DA6CF /* FeedViewModel.swift in Sources */,
+				DAAC6BE91FA0C2CC00FCAE6E /* FeedModel.swift in Sources */,
 				DAAC6BBC1F9F357900FCAE6E /* FeedListCoordinator.swift in Sources */,
+				DAF25B141FA746D700D451AC /* DetailFeedViewModel.swift in Sources */,
 				DAAC6BC41F9F35DF00FCAE6E /* NewsViewModel.swift in Sources */,
 				DAAC6BC81F9F361C00FCAE6E /* FeedListViewController.swift in Sources */,
+				DAF25B181FA7474500D451AC /* DetailFeedCoordinator.swift in Sources */,
 				DAAC6BBA1F9F356500FCAE6E /* ListCoordinator.swift in Sources */,
 				DAAC6BCA1F9F366C00FCAE6E /* FeedCell.swift in Sources */,
 				DA8460881FA1D5E800A5C48A /* NewsProviderModel.swift in Sources */,

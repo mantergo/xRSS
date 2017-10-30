@@ -12,7 +12,7 @@ target 'xRSS' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'RxAlamofire'
-
+  pod 'HTMLString', '~> 4.0'
 
   # Pods for xRSS
 

@@ -19,7 +19,7 @@ protocol ListVM {
     var bag: DisposeBag { get set }
     var indicator: ActivityIndicator { get set }
     var newsProviderSelected: PublishSubject<NewsProvider> { get set }
-    var feedReady: PublishSubject<[FeedViewModel]> { get set }
+    var feedReady: PublishSubject<[FeedModel]> { get set }
     var errorResult: PublishSubject<(String, Bool)> { get set }
     
 }
@@ -34,7 +34,7 @@ class ListViewModel: ListVM {
     var newsProviderSelected = PublishSubject<NewsProvider>()
     
     //output
-    var feedReady = PublishSubject<[FeedViewModel]>()
+    var feedReady = PublishSubject<[FeedModel]>()
     var errorResult = PublishSubject<(String, Bool)>()
     
     init() {
@@ -46,7 +46,6 @@ class ListViewModel: ListVM {
             .flatMap { newsProvider -> Observable<[FeedKit.RSSFeedItem]> in
                 
                 RSSService.shared.getFeed(forURL: newsProvider.url)
-                    //.delay(2.0, scheduler: MainScheduler.asyncInstance)
                     .trackActivity(self.indicator)
                     .catchError({[weak self] (error) -> Observable<[FeedKit.RSSFeedItem]> in
                         print(error)
@@ -60,28 +59,28 @@ class ListViewModel: ListVM {
                     })
             }
             .observeOn(main)
-            .flatMap{ (items) -> Observable<[FeedViewModel]> in
-                var feedArray = [FeedViewModel]()
+            .flatMap{ (items) -> Observable<[FeedModel]> in
+                var feedArray = [FeedModel]()
                 for item in items {
                     
-//                    requestData(.get, URL(string: (item.media?.mediaThumbnails![0].attributes?.url!)!)!)
-//                        .observeOn(serial)
-//                        .subscribe (onNext: { ( _, data) in
+                    //duct tape for images, because different rss feeds have different image path
+                    
                     var imageUrl = URL(string: "")
                     if let media = item.media?.mediaThumbnails {
                         imageUrl = URL(string:(media[0].attributes?.url)!)
                     }
                     else {
-                        imageUrl = URL(string: (item.media?.mediaContents![0].attributes?.url)!)
+                        if let media = item.media?.mediaContents {
+                            imageUrl = URL(string:(media[0].attributes?.url)!)
+                        } else {
+                            
+                            imageUrl = URL(string: (item.enclosure?.attributes?.url)!)
+                            
+                        }
                     }
                     
-                    feedArray.append(FeedViewModel(_title: item.title!, _description: item.description!, _url: item.link!, _date: item.pubDate!, _image:
+                    feedArray.append(FeedModel(_title: item.title!, _description: item.description!, _url: item.link!, _date: item.pubDate!, _image:
                         imageUrl!))
-                            
-//                        }
-//                        ).disposed(by: self.bag)
-//
-                    
                     
                 }
                 return Observable.just(feedArray)
