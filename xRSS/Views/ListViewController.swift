@@ -9,10 +9,12 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 class ListViewController: UIViewController {
     
     var viewModel: ListVM!
+    
     private var bag:DisposeBag? = nil
     
     @IBOutlet weak var tableView: UITableView!
@@ -28,6 +30,7 @@ class ListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
 
          bag = DisposeBag()
+        
          newsProviders.asObservable()
             .observeOn(main)
             .bind(to: tableView.rx.items(cellIdentifier: "listItemCell", cellType: UITableViewCell.self)) { (_, newsProvider, cell) in
@@ -39,6 +42,14 @@ class ListViewController: UIViewController {
         tableView.rx.modelSelected(NewsProvider.self)
             .bind(to: viewModel.newsProviderSelected)
             .disposed(by: bag!)
+        
+        let progress = MBProgressHUD()
+        progress.mode = MBProgressHUDMode.indeterminate
+        
+        viewModel.indicator.asObservable()
+            .bind(to: progress.rx_mbprogresshud_animating)
+            .disposed(by: bag!)
+        
         
     }
     

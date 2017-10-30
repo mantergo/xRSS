@@ -13,22 +13,19 @@ import RxCocoa
 
 protocol FeedListVM {
     
-    var feedItems: Variable<[FeedViewModel]> {get set}
-    var feedSelected: PublishSubject<FeedViewModel> {get set}
+    var feedItems: Variable<[FeedModel]> { get set }
+    var feedSelected: PublishSubject<FeedModel> { get set }
     
 }
 
 class FeedListViewModel: FeedListVM{
     
-    var feedItems = Variable<[FeedViewModel]>([])
-    var feedSelected = PublishSubject<FeedViewModel>()
+    var feedItems = Variable<[FeedModel]>([])
+    var feedSelected = PublishSubject<FeedModel>()
     
-    init(items: [FeedViewModel]) {
+    init(items: [FeedModel]) {
         
         self.feedItems.value = items
 
     }
-    
-    
-    
 }

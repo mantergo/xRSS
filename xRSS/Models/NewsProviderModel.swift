@@ -24,6 +24,6 @@ struct NewsProvider {
 
 let newsProviders = Variable<[NewsProvider]>([
     NewsProvider( _title: "CITYDOG.BY", _url: "https://citydog.by/rss/"),
-    NewsProvider( _title: "KAKTUTZHIT.BY", _url: "https://feeds.feedburner.com/kaktutzhit"),
+    NewsProvider( _title: "SVABODA.ORG", _url: "https://www.svaboda.org/api/zvgrppeo_qpm"),
     NewsProvider( _title: "ONLINER.BY", _url: "https://people.onliner.by/feed"),
     NewsProvider( _title: "DEV.BY", _url: "https://dev.by/rss")])

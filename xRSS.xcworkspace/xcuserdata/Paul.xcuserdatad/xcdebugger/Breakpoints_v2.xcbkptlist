@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "xRSS/Utils/MBProgressHUD+Rx.swift"
-            timestampString = "530701772.485884"
+            filePath = "xRSS/Models/FeedModel.swift"
+            timestampString = "531063957.242584"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "MBProgressHUD"
-            landmarkType = "21">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "xRSS/ViewModels/FeedListViewModel.swift"
-            timestampString = "530703747.064917"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "init(items:)"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "init(_title:_description:_url:_date:_image:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xRSS/ViewModels/ListViewModel.swift"
-            timestampString = "530703747.065544"
+            timestampString = "531063957.242923"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>

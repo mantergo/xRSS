@@ -13,7 +13,7 @@ import FeedKit
 
 class ListCoordinator: Coordinator {
     
-    weak var appCoordinator: AppCoordinator!
+    weak var appCoordinator: AppCoordinatorProtocol!
     weak var navigationController: UINavigationController!
     var indicator = ActivityIndicator()
     var bag = DisposeBag()
@@ -31,10 +31,10 @@ class ListCoordinator: Coordinator {
             let viewModel = ListViewModel()
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
-
+            
             
             viewModel.feedReady
-            .observeOn(main)
+                .observeOn(main)
                 .subscribe(onNext: { [weak self] items in
                     
                     self?.appCoordinator.startFeedList(with: items, on: (self?.navigationController)!)
@@ -42,7 +42,7 @@ class ListCoordinator: Coordinator {
                 }).disposed(by: bag)
             
             viewModel.errorResult
-            .observeOn(main)
+                .observeOn(main)
                 .subscribe(onNext: { [weak self] (errorMsg, type) in
                     
                     self?.appCoordinator.handleResult(message: errorMsg, type: false)

@@ -20,7 +20,7 @@ class FeedListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "News"
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
 
@@ -28,20 +28,24 @@ class FeedListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-         bag = DisposeBag()
+        bag = DisposeBag()
         
         viewModel.feedItems.asObservable()
             .observeOn(main)
-            .bind(to: tableView.rx.items(cellIdentifier: "feedItemCell", cellType: FeedCell.self)) {(_, feedItem, cell) in
+            .bind(to: tableView.rx.items(cellIdentifier: "feedItemCell", cellType: FeedCell.self)) {[weak self] (_, feedItem, cell) in
                 
-                cell.titleLabel.text = feedItem.title
-                cell.dateLabel.text = feedItem.date
+                cell.viewModel = FeedViewModel(model: feedItem)
+                
+                cell.viewModel.title.asObservable().bind(to: cell.titleLabel.rx.text).disposed(by: (self?.bag!)!)
+                cell.viewModel.date.asObservable().bind(to: cell.dateLabel.rx.text).disposed(by: (self?.bag!)!)
+                cell.viewModel.image.asObservable().bind(to: cell.feedImage.rx.image).disposed(by: (self?.bag!)!)
+                
                 cell.selectionStyle = .none
                 
             }
             .disposed(by: bag!)
         
-        tableView.rx.modelSelected(FeedViewModel.self)
+        tableView.rx.modelSelected(FeedModel.self)
             .bind(to: viewModel.feedSelected)
             .disposed(by: bag!)
         

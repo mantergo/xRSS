@@ -13,12 +13,12 @@ import RxSwift
 
 class FeedListCoordinator: Coordinator {
     
-    weak var appCoordinator: AppCoordinator!
+    weak var appCoordinator: AppCoordinatorProtocol!
     weak var navigationController: UINavigationController!
-    var feedItems: [FeedViewModel]!
+    var feedItems: [FeedModel]!
     var bag = DisposeBag()
     
-    init(navigationController: UINavigationController, items: [FeedViewModel]) {
+    init(navigationController: UINavigationController, items: [FeedModel]) {
         
         self.navigationController = navigationController
         self.feedItems = items
@@ -36,7 +36,7 @@ class FeedListCoordinator: Coordinator {
             viewModel.feedSelected
                 .subscribe(onNext: { item in
                     
-                    UIApplication.shared.open(item.url, options: [:])
+                    self.appCoordinator.startDetailFeed(with: item, on: self.navigationController)
                     
                 }).disposed(by: bag)
             
