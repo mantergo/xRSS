@@ -63,7 +63,7 @@ class FeedListViewModel: FeedListVM{
                 self?.objectCount.value = results.count
                 self?.objects.value = (false, deletions, insertions, modifications)
             case .error(let error):
-                // An error occurred while opening the Realm file on the background worker thread
+            
                 fatalError("\(error)")
             }
         }
@@ -77,17 +77,65 @@ class FeedListViewModel: FeedListVM{
         
         
         func requestData() {
+            ///беда!
+//            .flatMap { newsProvider -> Observable<[FeedKit.RSSFeedItem]> in
             
-            RSSService.shared
-                .getFeed(forURL: URL(""))
-                .subscribeOn(ConcurrentMainScheduler.instance)
-                .observeOn(main)
-                .do(onNext: {(objects)
-                    try! realm.write(objects, update: true)
+                RSSService.shared.getFeed(forURL: (realmObjects[0].newsProvider?.url)!)
+                   // .trackActivity(self.indicator)
+                    .catchError({[weak self] (error) -> Observable<[FeedKit.RSSFeedItem]> in
+                        print(error)
+                        self?.errorResult.onNext((error.localizedDescription, false))
+                        return Observable.create{ observer in
+                            observer.on(.next([]))
+                            return Disposables.create {
+                                print("disposed")
+                            }
+                        }
                     })
-                    .observeOn(MainScheduler.instance)
-                    .subscribe()
-                    .disposed(by: bag)
+                }
+                .observeOn(main)
+                .flatMap{ (items) -> Observable<[FeedModel]> in
+                    var feedArray = [FeedModel]()
+                    for item in items {
+                        
+                        
+                        var imageUrl = URL(string: "")
+                        if let media = item.media?.mediaThumbnails {
+                            imageUrl = URL(string:(media[0].attributes?.url)!)
+                        }
+                        else {
+                            if let media = item.media?.mediaContents {
+                                imageUrl = URL(string:(media[0].attributes?.url)!)
+                            } else {
+                                
+                                imageUrl = URL(string: (item.enclosure?.attributes?.url)!)
+                                
+                            }
+                        }
+                        
+                        feedArray.append(FeedModel(_title: item.title!, _description: item.description!, _url: item.link!, _date: item.pubDate!, _image:
+                            imageUrl!))
+                        
+                    }
+                    return Observable.just(feedArray)
+                }
+                .subscribe(onNext: {[weak self] items in
+                    try! realm.write(items)
+                    
+                })
+                .disposed(by: bag)
+            
+//            RSSService.shared
+//                .getFeed(forURL: (realmObjects[0].newsProvider?.url)!)
+//                .subscribeOn(ConcurrentMainScheduler.instance)
+//                .observeOn(main)
+//
+//                .do(onNext: {(objects)
+//                    try! realm.write(objects, update: true)
+//                    })
+//                    .observeOn(MainScheduler.instance)
+//                    .subscribe()
+//                    .disposed(by: bag)
             
         }
 }

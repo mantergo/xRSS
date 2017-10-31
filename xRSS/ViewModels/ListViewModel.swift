@@ -63,7 +63,6 @@ class ListViewModel: ListVM {
                 var feedArray = [FeedModel]()
                 for item in items {
                     
-                    //duct tape for images, because different rss feeds have different image path
                     
                     var imageUrl = URL(string: "")
                     if let media = item.media?.mediaThumbnails {
