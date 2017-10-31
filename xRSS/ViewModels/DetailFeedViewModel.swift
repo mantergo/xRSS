@@ -10,6 +10,7 @@ import Foundation
 import FeedKit
 import RxSwift
 import RxCocoa
+import Alamofire
 
 protocol DetailFeedVM {
     
@@ -40,10 +41,15 @@ class DetailFeedViewModel: DetailFeedVM {
     
     init(item: FeedModel){
         
-        title = item.title
-        description = item.description
-        url = item.url
-        image = item.image
+        title.value = item.title
+        description.value = item.description
+        url.value = item.url
+        Alamofire.request(item.imageURL!).responseImage { response in
+            
+            if let imageT = response.result.value {
+                self.image.value = imageT
+            }
+        }
         
         openButton
             .subscribe( onNext: { [unowned self] in

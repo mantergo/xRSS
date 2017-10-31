@@ -10,6 +10,7 @@ import UIKit
 import FeedKit
 import SafariServices
 import RxSwift
+import RealmSwift
 
 class FeedListCoordinator: Coordinator {
     
@@ -29,7 +30,8 @@ class FeedListCoordinator: Coordinator {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "FeedListVC") as? FeedListViewController {
-            let viewModel = FeedListViewModel(items: self.feedItems)
+            let realm = try! Realm()
+            let viewModel = FeedListViewModel(realm: realm)
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
             

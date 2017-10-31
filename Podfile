@@ -13,6 +13,9 @@ target 'xRSS' do
   pod 'AlamofireImage'
   pod 'RxAlamofire'
   pod 'HTMLString', '~> 4.0'
+  pod 'Realm'
+  pod 'RealmSwift'
+  pod 'RxRealm'
 
   # Pods for xRSS
 

@@ -8,14 +8,15 @@
 
 import Foundation
 import RxSwift
+import RealmSwift   
 
-struct NewsProvider {
+class NewsProvider: Object {
     
-    var title = ""
-    var url = ""
+    @objc dynamic var title = ""
+    @objc dynamic var url = ""
     
-    init( _title: String, _url: String){
-        
+    convenience init( _title: String, _url: String){
+        self.init()
         title = _title
         url = _url
         

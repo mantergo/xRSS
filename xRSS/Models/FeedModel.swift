@@ -13,35 +13,32 @@ import RxCocoa
 import RxSwift
 import Alamofire
 import HTMLString
+import RealmSwift
 
-class FeedModel {
+class FeedModel: Object {
     
-    var title = Variable<String>("")
-    var description = Variable<String>("")
-    var url = Variable<URL>(URL(string:"https://www.google.by")!)
-    var date = Variable<String>("")
-    var image = Variable<UIImage>(UIImage())
+    @objc dynamic var newsProvider: NewsProvider?
+    @objc dynamic var title = ""
+    @objc dynamic var feedDescription = ""
+    @objc dynamic var url = URL(string:"https://www.google.by")!
+    @objc dynamic var date = ""
+    @objc dynamic var imageURL: URL?
     
-    init() {
-        
+    override static func primaryKey() -> String? {
+        return "url"
     }
     
-    init (_title: String, _description: String, _url: String, _date:Date, _image: URL) {
-        
-        title.value = _title.removingHTMLEntities
-        description.value = _description.removingHTMLEntities.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-        url.value = URL(string: _url)!
+    convenience init (_title: String, _description: String, _url: String, _date:Date, _image: URL) {
+        self.init()
+        title = _title.removingHTMLEntities
+        feedDescription = _description.removingHTMLEntities.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        url = URL(string: _url)!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm     dd.MM.yyyy"
         let dateString = dateFormatter.string(from: _date as Date)
-        date.value = dateString
-        
-        Alamofire.request(_image).responseImage { response in
-            
-            if let imageT = response.result.value {
-                self.image.value = imageT
-            }
-        }
+        date = dateString
+        imageURL = _image
+    
     }
     
 }

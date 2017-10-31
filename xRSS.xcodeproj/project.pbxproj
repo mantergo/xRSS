@@ -151,7 +151,6 @@
 				DAAC6BA71F9F34B900FCAE6E /* ListViewController.swift */,
 				DAF25B151FA7472D00D451AC /* DetailFeedViewController.swift */,
 				DAAC6BC71F9F361C00FCAE6E /* FeedListViewController.swift */,
-				DAAC6BC91F9F366C00FCAE6E /* FeedCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				DAAC6BE81FA0C2CC00FCAE6E /* FeedModel.swift */,
+				DAAC6BC91F9F366C00FCAE6E /* FeedCell.swift */,
 				DA8460871FA1D5E800A5C48A /* NewsProviderModel.swift */,
 			);
 			path = Models;
@@ -298,8 +298,10 @@
 				"${BUILT_PRODUCTS_DIR}/HTMLString/HTMLString.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -310,8 +312,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLString.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

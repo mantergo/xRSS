@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xRSS/Models/FeedModel.swift"
-            timestampString = "531063957.242584"
+            timestampString = "531136054.188052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "init(_title:_description:_url:_date:_image:)"
-            landmarkType = "7">
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "FeedModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xRSS/ViewModels/ListViewModel.swift"
-            timestampString = "531063957.242923"
+            timestampString = "531132740.420118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
