@@ -20,7 +20,7 @@ protocol FeedListVM {
     
     func objectViewModel(for index: Int) -> FeedVM
     func objectModel(for index: Int) -> FeedModel
-    //    var feedItems: Variable<[FeedModel]> { get set }
+    
     var feedSelected: PublishSubject<FeedModel> { get set }
     var isAnimating: Variable<Bool> { get set }
     var errorResult: PublishSubject<(String, Bool)> { get set }
@@ -42,16 +42,19 @@ class FeedListViewModel: FeedListVM{
     
     var bag = DisposeBag()
     
+    //navigation bar animation
     var isAnimating = Variable<Bool>(true)
     
     var feedItems = Variable<[FeedModel]>([])
     var feedSelected = PublishSubject<FeedModel>()
     
+    
     init(realm: Realm, provider: NewsProvider) {
         self.realm = realm
+        //get objects for selected newsfeed filtered by date
         realmObjects = realm.objects(FeedModel.self).filter("newsProviderTitle = %@", provider.title).sorted(byKeyPath: "date", ascending: false)
-            //.filter({$0.newsProvider == provider})
-
+   
+        
         self.provider = provider
         setupNotifications()
         
@@ -60,7 +63,7 @@ class FeedListViewModel: FeedListVM{
     
     func setupNotifications() {
         
-        
+        //update tableView when new feed fetched
         realmObjectsNotification = realmObjects.observe { [weak self] (changes: RealmCollectionChange) in
             switch changes {
             case .initial(let results):
@@ -76,19 +79,21 @@ class FeedListViewModel: FeedListVM{
         }
     }
     
+    //feedviewModel for index
     func objectViewModel(for index: Int) -> FeedVM {
         let object = realmObjects[index]
         let vm = FeedViewModel(model: object)
         return vm
     }
     
+    //feedmodel for index
     func objectModel(for index: Int) -> FeedModel {
         return realmObjects[index]
     }
     
     
     func requestData() {
-  
+        
         RSSService.shared.getFeed(forURL:self.provider.url)
             .catchError({[weak self] (error) -> Observable<[FeedKit.RSSFeedItem]> in
                 print(error)
@@ -101,11 +106,10 @@ class FeedListViewModel: FeedListVM{
                 }
             })
             .subscribeOn(async)
+            //parse feeditem to feedmodel
             .flatMap{ (items) -> Observable<[FeedModel]> in
                 var feedArray = [FeedModel]()
                 for item in items {
-                    
-                    
                     var imageUrl = ""
                     if let media = item.media?.mediaThumbnails {
                         imageUrl = (media[0].attributes?.url)!
@@ -126,7 +130,7 @@ class FeedListViewModel: FeedListVM{
                 }
                 return Observable.just(feedArray)
             }
-            .observeOn(async)
+            //add new feed to DB
             .subscribe( onNext: { [weak self] items in
                 do{ for item in items {
                     let realm = try! Realm()
@@ -142,7 +146,7 @@ class FeedListViewModel: FeedListVM{
                 } catch let error as NSError {
                     self?.errorResult.onNext((error.localizedDescription, false))
                 }
-            },
+                },
                         onCompleted: {
                             self.isAnimating.value = false
             })

@@ -28,7 +28,7 @@ class DetailFeedViewController: UIViewController {
         
         viewModel.title.asObservable().bind(to: titleLabel.rx.text).disposed(by: bag!)
         viewModel.feedDescription.asObservable().bind(to: descriptionTextView.rx.text).disposed(by: bag!)
-        viewModel.image.asObservable().bind(to: image.rx.image).disposed(by: bag!)
+        //viewModel.image.asObservable().bind(to: image.rx.image).disposed(by: bag!)
         viewModel.newsFeedTitle.asObservable().bind(to: navigationItem.rx.title).disposed(by: bag!)
         
         viewModel.imageURL.asObservable()

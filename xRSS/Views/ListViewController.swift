@@ -24,6 +24,7 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Choose news provider"
         tableView.rowHeight = 60
+        tableView.sectionFooterHeight = CGFloat(Float.leastNormalMagnitude)
         
     }
     

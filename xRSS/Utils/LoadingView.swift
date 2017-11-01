@@ -49,12 +49,12 @@ class LoadingView: UIView {
         if !isAnimationRunning {
             self.isAnimationRunning = true
             
-            UIView.animate(withDuration: 0.01, delay:0, options: [], animations: {
+          //  UIView.animate(withDuration: 0.001, delay:0, options: [], animations: {
                 self.frame = CGRect(x: 0, y: self.frame.origin.y, width: self.screenSize.width, height: self.height)
-            }, completion: { animationFinished in
+        //    }, completion: { animationFinished in
                 self.addSubview(self.progressBarIndicator)
                 self.configureAnimation()
-            })
+      //      })
         }
         
     

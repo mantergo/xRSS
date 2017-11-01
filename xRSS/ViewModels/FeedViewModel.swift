@@ -17,7 +17,6 @@ protocol FeedVM {
     var description: Variable<String> { get set }
     var url: Variable<URL> { get set }
     var date: Variable<String> { get set }
-    var image: Variable<UIImage> { get set }
     var imageURL: Variable<URL> { get set }
     
 }
@@ -28,7 +27,6 @@ class FeedViewModel: FeedVM {
     var description = Variable<String>("")
     var url = Variable<URL>(URL(string: "https://www.google.by")!)
     var date = Variable<String>("")
-    var image = Variable<UIImage>(UIImage())
     var imageURL = Variable<URL>(URL(string: "https://www.google.by")!)
     
     var bag = DisposeBag()
@@ -44,11 +42,6 @@ class FeedViewModel: FeedVM {
         let dateString = dateFormatter.string(from: model.date)
         date.value = dateString
         imageURL.value = URL(string: model.imageURL)!
-        Alamofire.request(URL(string: model.imageURL)!).responseImage { response in
-            
-            if let imageT = response.result.value {
-                self.image.value = imageT
-            }
-        }
+        
     }
 }
