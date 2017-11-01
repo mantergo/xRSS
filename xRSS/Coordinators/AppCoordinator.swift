@@ -20,7 +20,7 @@ protocol AppCoordinatorProtocol: class, Coordinator {
     
     func start()
     func startList(with navigationController:UINavigationController)
-    func startFeedList(with feed: [FeedModel], on navigationController: UINavigationController)
+    func startFeedList(with provider: NewsProvider, on navigationController: UINavigationController)
     func startDetailFeed(with feed: FeedModel, on navigationController: UINavigationController)
     func handleResult(message: String, type: Bool)
     
@@ -64,11 +64,11 @@ class AppCoordinator: AppCoordinatorProtocol {
         
     }
     
-    func startFeedList(with feed: [FeedModel], on navigationController: UINavigationController){
+    func startFeedList(with provider: NewsProvider, on navigationController: UINavigationController){
         
         var feedListCoordinator: FeedListCoordinator!
         
-        feedListCoordinator = FeedListCoordinator(navigationController: navigationController, items: feed)
+        feedListCoordinator = FeedListCoordinator(navigationController: navigationController, item: provider)
         feedListCoordinator.appCoordinator = self
         
         coordinators.updateValue(feedListCoordinator, forKey: "feedList")

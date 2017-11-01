@@ -14,7 +14,7 @@ import FeedKit
 class ListCoordinator: Coordinator {
     
     weak var appCoordinator: AppCoordinatorProtocol!
-    weak var navigationController: UINavigationController!
+    var navigationController: UINavigationController!
     var indicator = ActivityIndicator()
     var bag = DisposeBag()
     
@@ -32,13 +32,13 @@ class ListCoordinator: Coordinator {
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
             
-            
-            viewModel.feedReady
-                .observeOn(main)
-                .subscribe(onNext: { [weak self] items in
+            viewModel.newsProviderSelected
+            .observeOn(main)
+                .subscribe(onNext: { [weak self] provider in
                     
-                    self?.appCoordinator.startFeedList(with: items, on: (self?.navigationController)!)
-                    
+                    if let navig = self?.navigationController {
+                    self?.appCoordinator.startFeedList(with: provider, on: navig)
+                    }
                 }).disposed(by: bag)
             
             viewModel.errorResult
@@ -48,12 +48,6 @@ class ListCoordinator: Coordinator {
                     self?.appCoordinator.handleResult(message: errorMsg, type: false)
                     
                 }).disposed(by: bag)
-            
-            
         }
-        
     }
-    
-    
-    
 }

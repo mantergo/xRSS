@@ -22,7 +22,7 @@ class DetailFeedCoordinator: Coordinator {
         
         self.navigationController = navigationController
         self.feedItem = item
-        
+
     }
     
     func start() {

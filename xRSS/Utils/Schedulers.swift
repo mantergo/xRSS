@@ -17,3 +17,7 @@ var serial: SerialDispatchQueueScheduler = {
 
 let main: SerialDispatchQueueScheduler = MainScheduler.instance
 
+var async: ConcurrentDispatchQueueScheduler = {
+    let dispatchQueue = DispatchQueue(label: "concurrent", qos: .background, attributes: .concurrent, target: DispatchQueue.global())
+    return ConcurrentDispatchQueueScheduler(queue: dispatchQueue)
+}()

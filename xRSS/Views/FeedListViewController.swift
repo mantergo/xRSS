@@ -15,20 +15,52 @@ import FeedKit
 class FeedListViewController: UIViewController {
     
     var viewModel: FeedListVM!
+    let loadingBar: LoadingView = LoadingView()
+    
     @IBOutlet weak var tableView: UITableView!
     private var bag:DisposeBag? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "News"
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 200
+      //  tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.dataSource = self
+        tableView.delegate = self
 
+//        viewModel.isAnimating.asObservable()
+//            .subscribeOn(main)
+//            .subscribe(onNext: {[weak self] event in
+//
+//                if event {
+//                    self?.loadingBar.startAnimating()
+//                }
+//                else {
+//                    self?.loadingBar.stopAnimation()
+//                }
+//
+//            }).disposed(by: bag!)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         bag = DisposeBag()
+        
+        viewModel.isAnimating.asObservable()
+            .subscribeOn(main)
+            .observeOn(main)
+            .subscribe(onNext: {[weak self] event in
+                
+                if event {
+                    self?.loadingBar.startAnimating()
+                }
+                else {
+                    self?.loadingBar.stopAnimation()
+                   // self?.loadingBar.height = 0
+                }
+                
+            }).disposed(by: bag!)
         
         viewModel.objects
         .asObservable()
@@ -38,9 +70,9 @@ class FeedListViewController: UIViewController {
                 }
                 else {
                     self?.tableView.beginUpdates()
-                    self?.tableView.insertRows(at: $0.1.map({ IndexPath(row: $0, section: 0) }),
+                    self?.tableView.deleteRows(at: $0.1.map({ IndexPath(row: $0, section: 0) }),
                                          with: .automatic)
-                    self?.tableView.deleteRows(at: $0.2.map({ IndexPath(row: $0, section: 0)}),
+                    self?.tableView.insertRows(at: $0.2.map({ IndexPath(row: $0, section: 0)}),
                                          with: .automatic)
                     self?.tableView.reloadRows(at: $0.3.map({ IndexPath(row: $0, section: 0) }),
                                          with: .automatic)
@@ -49,25 +81,12 @@ class FeedListViewController: UIViewController {
             })
             .disposed(by: bag!)
         
-//        viewModel.feedItems.asObservable()
-//            .observeOn(main)
-//            .bind(to: tableView.rx.items(cellIdentifier: "feedItemCell", cellType: FeedCell.self)) {[weak self] (_, feedItem, cell) in
-//
-//                cell.viewModel = FeedViewModel(model: feedItem)
-//
-//                cell.viewModel.title.asObservable().bind(to: cell.titleLabel.rx.text).disposed(by: (self?.bag!)!)
-//                cell.viewModel.date.asObservable().bind(to: cell.dateLabel.rx.text).disposed(by: (self?.bag!)!)
-//                cell.viewModel.image.asObservable().bind(to: cell.feedImage.rx.image).disposed(by: (self?.bag!)!)
-//
-//                cell.selectionStyle = .none
-//
-//            }
+
+        
+//        tableView.rx.modelSelected(FeedModel.self)
+//            .bind(to: viewModel.feedSelected)
 //            .disposed(by: bag!)
-        
-        tableView.rx.modelSelected(FeedModel.self)
-            .bind(to: viewModel.feedSelected)
-            .disposed(by: bag!)
-        
+//
         viewModel.requestData()
         
     }
@@ -75,13 +94,14 @@ class FeedListViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         
         bag = nil
+        self.loadingBar.stopAnimation()
         
     }
     
 
 }
 
-extension FeedListViewController: UITableViewDataSource {
+extension FeedListViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -97,5 +117,13 @@ extension FeedListViewController: UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        viewModel.feedSelected.onNext(viewModel.objectModel(for: indexPath.row))
+        
+    }
+    
+    
     
 }

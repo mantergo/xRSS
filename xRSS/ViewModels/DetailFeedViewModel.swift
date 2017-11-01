@@ -15,9 +15,12 @@ import Alamofire
 protocol DetailFeedVM {
     
     var title: Variable<String> { get set }
-    var description: Variable<String> { get set }
+    var feedDescription: Variable<String> { get set }
     var url: Variable<URL> { get set }
     var image:Variable<UIImage> { get set }
+    var imageURL: Variable<URL> { get set }
+    
+    var newsFeedTitle: Variable<String> { get set }
     
     var openButton: PublishSubject<Void> { get set }
     var openURL: PublishSubject<URL> { get set }
@@ -27,9 +30,11 @@ protocol DetailFeedVM {
 class DetailFeedViewModel: DetailFeedVM {
 
     var title = Variable<String>("")
-    var description = Variable<String>("")
+    var feedDescription = Variable<String>("")
     var url = Variable<URL>(URL(string:"https://www.google.by")!)
     var image = Variable<UIImage>(UIImage())
+    var imageURL = Variable<URL>(URL(string: "https://google.by")!)
+    var newsFeedTitle = Variable<String>("")
     
     var bag = DisposeBag()
     
@@ -42,14 +47,10 @@ class DetailFeedViewModel: DetailFeedVM {
     init(item: FeedModel){
         
         title.value = item.title
-        description.value = item.description
-        url.value = item.url
-        Alamofire.request(item.imageURL!).responseImage { response in
-            
-            if let imageT = response.result.value {
-                self.image.value = imageT
-            }
-        }
+        feedDescription.value = item.feedDescription
+        url.value = URL(string: item.url)!
+        imageURL.value = URL(string: item.imageURL)!
+        newsFeedTitle.value = item.newsProviderTitle
         
         openButton
             .subscribe( onNext: { [unowned self] in

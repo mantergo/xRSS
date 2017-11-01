@@ -17,28 +17,29 @@ import RealmSwift
 
 class FeedModel: Object {
     
-    @objc dynamic var newsProvider: NewsProvider?
+    @objc dynamic var newsProviderTitle = ""
     @objc dynamic var title = ""
     @objc dynamic var feedDescription = ""
-    @objc dynamic var url = URL(string:"https://www.google.by")!
-    @objc dynamic var date = ""
-    @objc dynamic var imageURL: URL?
+    @objc dynamic var url = ""
+    @objc dynamic var date = Date()
+    @objc dynamic var imageURL = ""
     
     override static func primaryKey() -> String? {
         return "url"
     }
     
-    convenience init (_title: String, _description: String, _url: String, _date:Date, _image: URL) {
+    convenience init (_title: String, _description: String, _url: String, _date:Date, _image: String, _provider: String) {
         self.init()
         title = _title.removingHTMLEntities
         feedDescription = _description.removingHTMLEntities.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-        url = URL(string: _url)!
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm     dd.MM.yyyy"
-        let dateString = dateFormatter.string(from: _date as Date)
-        date = dateString
+        url = _url
+        //let dateFormatter = DateFormatter()
+        //dateFormatter.dateFormat = "hh:mm     dd.MM.yyyy"
+        //let dateString = dateFormatter.string(from: _date as Date)
+        date = _date
         imageURL = _image
-    
+        newsProviderTitle = _provider
+        
     }
     
 }
