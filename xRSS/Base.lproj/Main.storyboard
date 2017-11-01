@@ -158,8 +158,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Open full article"/>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ecc-ru-YTl">
-                                <rect key="frame" x="16" y="283" width="343" height="291"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ecc-ru-YTl">
+                                <rect key="frame" x="16" y="271" width="343" height="303"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -169,7 +169,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dRj-hS-pja" firstAttribute="centerX" secondItem="8jl-ri-AhP" secondAttribute="centerX" id="2Tm-qF-1jU"/>
-                            <constraint firstItem="ecc-ru-YTl" firstAttribute="top" secondItem="wdG-kE-1Wd" secondAttribute="bottom" constant="27" id="C5E-0l-b9s"/>
+                            <constraint firstItem="ecc-ru-YTl" firstAttribute="top" secondItem="wdG-kE-1Wd" secondAttribute="bottom" constant="15" id="C5E-0l-b9s"/>
                             <constraint firstItem="ecc-ru-YTl" firstAttribute="trailing" secondItem="8jl-ri-AhP" secondAttribute="trailingMargin" id="F7U-iP-B4i"/>
                             <constraint firstItem="wdG-kE-1Wd" firstAttribute="leading" secondItem="8jl-ri-AhP" secondAttribute="leadingMargin" constant="-16" id="Pqw-8B-62H"/>
                             <constraint firstItem="ecc-ru-YTl" firstAttribute="leading" secondItem="8jl-ri-AhP" secondAttribute="leadingMargin" id="VBR-IK-v0r"/>

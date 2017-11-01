@@ -27,19 +27,6 @@ class FeedListViewController: UIViewController {
       //  tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
         tableView.delegate = self
-
-//        viewModel.isAnimating.asObservable()
-//            .subscribeOn(main)
-//            .subscribe(onNext: {[weak self] event in
-//
-//                if event {
-//                    self?.loadingBar.startAnimating()
-//                }
-//                else {
-//                    self?.loadingBar.stopAnimation()
-//                }
-//
-//            }).disposed(by: bag!)
         
     }
     
@@ -81,12 +68,6 @@ class FeedListViewController: UIViewController {
             })
             .disposed(by: bag!)
         
-
-        
-//        tableView.rx.modelSelected(FeedModel.self)
-//            .bind(to: viewModel.feedSelected)
-//            .disposed(by: bag!)
-//
         viewModel.requestData()
         
     }
