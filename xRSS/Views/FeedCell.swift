@@ -18,7 +18,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var feedImage: UIImageView!
     
-    var viewModel: FeedVM? = nil {
+    var viewModel: FeedViewModelProtocol? = nil {
         didSet {
             setupObservables()
         }
@@ -38,7 +38,7 @@ class FeedCell: UITableViewCell {
         //viewModel?.image.asObservable().bind(to: feedImage.rx.image).disposed(by: bag)
         viewModel?.title.asObservable().bind(to: titleLabel.rx.text).disposed(by: bag)
         viewModel?.date.asObservable().bind(to: dateLabel.rx.text).disposed(by: bag)
-        DataRequest.addAcceptableImageContentTypes(["image/jpg"])
+      //  DataRequest.addAcceptableImageContentTypes(["image/jpg"])
         viewModel?.imageURL.asObservable()
             .subscribeOn(main)
             .subscribe(onNext: { url in

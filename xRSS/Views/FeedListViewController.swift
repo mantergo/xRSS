@@ -14,8 +14,10 @@ import FeedKit
 
 class FeedListViewController: UIViewController {
     
-    var viewModel: FeedListVM!
+    private let refreshControl = UIRefreshControl()
+    var viewModel: FeedListViewModelProtocol!
     let loadingBar: LoadingView = LoadingView()
+    @IBOutlet weak var newsProviderBackgroundImage: UIImageView!
     
     @IBOutlet weak var tableView: UITableView!
     private var bag:DisposeBag? = nil
@@ -27,13 +29,23 @@ class FeedListViewController: UIViewController {
       //  tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
         tableView.delegate = self
-     //   viewModel.requestData()
+       // viewModel.requestData()
+        //refreshControl.tintColor = UIColor.blue
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        
+        newsProviderBackgroundImage.image = UIImage(named: viewModel.provider.title)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         bag = DisposeBag()
         
+      //  self.tableView.reloadData()
         
         
         viewModel.isAnimating.asObservable()
@@ -46,13 +58,15 @@ class FeedListViewController: UIViewController {
                 }
                 else {
                     self?.loadingBar.stopAnimation()
+                    self?.refreshControl.endRefreshing()
                    // self?.loadingBar.height = 0
                 }
                 
             }).disposed(by: bag!)
         
         viewModel.objects
-        .asObservable()
+       // .asObservable()
+            .observeOn(main)
             .subscribe(onNext: { [weak self] in
                 if $0.0 {
                     self?.tableView.reloadData()
@@ -66,11 +80,12 @@ class FeedListViewController: UIViewController {
                     self?.tableView.reloadRows(at: $0.3.map({ IndexPath(row: $0, section: 0) }),
                                          with: .automatic)
                     self?.tableView.endUpdates()
+                  //  self?.refreshControl.endRefreshing()
                 }
             })
             .disposed(by: bag!)
         
-        viewModel.requestData()
+      viewModel.requestData()
         
     }
     
@@ -79,6 +94,11 @@ class FeedListViewController: UIViewController {
         bag = nil
         self.loadingBar.stopAnimation()
         
+    }
+    
+    @objc func refreshData(_ sender: Any) {
+        loadingBar.startAnimating()
+        viewModel.requestData()
     }
     
 

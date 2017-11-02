@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import Alamofire
 
-protocol FeedVM {
+protocol FeedViewModelProtocol {
     
     var title: Variable<String> { get set }
     var description: Variable<String> { get set }
@@ -21,7 +21,7 @@ protocol FeedVM {
     
 }
 
-class FeedViewModel: FeedVM {
+class FeedViewModel: FeedViewModelProtocol {
     
     var title = Variable<String>("")
     var description = Variable<String>("")

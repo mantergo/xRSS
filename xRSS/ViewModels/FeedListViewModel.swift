@@ -12,14 +12,16 @@ import RxSwift
 import RxCocoa
 import RealmSwift
 
-protocol FeedListVM {
+protocol FeedListViewModelProtocol {
     
     var objectCount: Variable<Int> { get }
-    var objects: Variable<(Bool, [Int], [Int], [Int])> { get }
+   // var objects: Variable<(Bool, [Int], [Int], [Int])> { get }
+    var objects: PublishSubject<(Bool, [Int], [Int], [Int])> { get }
     
-    
-    func objectViewModel(for index: Int) -> FeedVM
+    func objectViewModel(for index: Int) -> FeedViewModelProtocol
     func objectModel(for index: Int) -> FeedModel
+    
+    var provider: NewsProvider { get set }
     
     var feedSelected: PublishSubject<FeedModel> { get set }
     var isAnimating: Variable<Bool> { get set }
@@ -28,12 +30,12 @@ protocol FeedListVM {
     
 }
 
-class FeedListViewModel: FeedListVM{
+class FeedListViewModel: FeedListViewModelProtocol{
     
     
     let objectCount = Variable<Int>(0)
-    let objects = Variable<(Bool, [Int], [Int], [Int])>((true, [], [], []))
-    
+  //  let objects = Variable<(Bool, [Int], [Int], [Int])>((true, [], [], []))
+    let objects = PublishSubject<(Bool, [Int], [Int], [Int])>()
     var realm: Realm
     let realmObjects: Results<FeedModel>
     var realmObjectsNotification: NotificationToken? = nil
@@ -76,10 +78,10 @@ class FeedListViewModel: FeedListVM{
             switch changes {
             case .initial(let results):
                 self?.objectCount.value = results.count
-                self?.objects.value = (true, [], [], [])
+                self?.objects.onNext((true, [], [], []))
             case .update(let results, let deletions, let insertions, let modifications):
                 self?.objectCount.value = results.count
-                self?.objects.value = (false, deletions, insertions, modifications)
+                self?.objects.onNext((false, deletions, insertions, modifications))
             case .error(let error):
                 
                 fatalError("\(error)")
@@ -88,7 +90,7 @@ class FeedListViewModel: FeedListVM{
     }
     
     //feedviewModel for index
-    func objectViewModel(for index: Int) -> FeedVM {
+    func objectViewModel(for index: Int) -> FeedViewModelProtocol {
         let object = realmObjects[index]
         let vm = FeedViewModel(model: object)
         return vm
@@ -100,7 +102,7 @@ class FeedListViewModel: FeedListVM{
     }
     
     
-    func requestData() {
+    @objc func requestData() {
         
         RSSService.shared.getFeed(forURL:self.provider.url)
             .catchError({[weak self] (error) -> Observable<[FeedKit.RSSFeedItem]> in
@@ -150,6 +152,7 @@ class FeedListViewModel: FeedListVM{
                             realm.add(item)
                         }
                     }
+                    
                     }
                 } catch let error as NSError {
                     self?.errorResult.onNext((error.localizedDescription, false))
@@ -157,6 +160,7 @@ class FeedListViewModel: FeedListVM{
                 },
                         onCompleted: {
                             self.isAnimating.value = false
+    
             })
             .disposed(by: bag)
     }

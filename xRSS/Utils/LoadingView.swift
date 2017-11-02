@@ -16,7 +16,9 @@ class LoadingView: UIView {
     var height : CGFloat = 2
     var intialWidth : CGFloat = 10
     public init(){
-        super.init(frame: CGRect(x: 0, y: 64, width: screenSize.width, height: 0))
+        
+        
+        super.init(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height + UINavigationController().navigationBar.frame.height, width: screenSize.width, height: 0))
          self.progressBarIndicator = UIView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 0, height: height)))
     }
     

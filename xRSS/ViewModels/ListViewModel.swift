@@ -14,10 +14,10 @@ import RxAlamofire
 
 
 
-protocol ListVM {
+protocol ListViewModelProtocol {
     
-    var bag: DisposeBag { get set }
-    var indicator: ActivityIndicator { get set }
+    var bag: DisposeBag { get }
+    var indicator: ActivityIndicator { get }
     var newsProviderSelected: PublishSubject<NewsProvider> { get set }
     var feedReady: PublishSubject<[FeedModel]> { get set }
     var errorResult: PublishSubject<(String, Bool)> { get set }
@@ -25,7 +25,7 @@ protocol ListVM {
 }
 
 
-class ListViewModel: ListVM {
+class ListViewModel: ListViewModelProtocol {
     
     var bag = DisposeBag()
     var indicator = ActivityIndicator()

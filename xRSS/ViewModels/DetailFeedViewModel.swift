@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-protocol DetailFeedVM {
+protocol DetailFeedViewModelProtocol {
     
     var title: Variable<String> { get set }
     var feedDescription: Variable<String> { get set }
@@ -21,12 +21,13 @@ protocol DetailFeedVM {
     
     var newsFeedTitle: Variable<String> { get set }
     
-    var openButton: PublishSubject<Void> { get set }
+//    var openButton: PublishSubject<Void> { get set }
     var openURL: PublishSubject<URL> { get set }
     
+    func openUrl()
 }
 
-class DetailFeedViewModel: DetailFeedVM {
+class DetailFeedViewModel: DetailFeedViewModelProtocol {
 
     var title = Variable<String>("")
     var feedDescription = Variable<String>("")
@@ -37,7 +38,7 @@ class DetailFeedViewModel: DetailFeedVM {
     var bag = DisposeBag()
     
     //input from VC
-    var openButton = PublishSubject<Void>()
+//    var openButton = PublishSubject<Void>()
     
     //output to Coordinator
     var openURL = PublishSubject<URL>()
@@ -50,11 +51,15 @@ class DetailFeedViewModel: DetailFeedVM {
         imageURL.value = URL(string: item.imageURL)!
         newsFeedTitle.value = item.newsProviderTitle
         
-        openButton
-            .subscribe( onNext: { [unowned self] in
-                self.openURL.onNext(self.url.value)
-            }).disposed(by: bag)
+//        openButton
+//            .subscribe( onNext: { [unowned self] in
+//                self.openURL.onNext(self.url.value)
+//            }).disposed(by: bag)
     
+    }
+    
+    func openUrl() {
+        self.openURL.onNext(self.url.value)
     }
     
 }

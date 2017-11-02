@@ -12,7 +12,7 @@ import RxSwift
 
 class DetailFeedViewController: UIViewController {
     
-    var viewModel: DetailFeedVM!
+    var viewModel: DetailFeedViewModelProtocol!
     private var bag:DisposeBag? = nil
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -36,14 +36,15 @@ class DetailFeedViewController: UIViewController {
                 self?.image.af_setImage(withURL: url)
             }).disposed(by: bag!)
         
-        (openFullButton.rx.tap).bind(to: viewModel.openButton).disposed(by: bag!)
+        openFullButton.rx.tap
+            .asObservable()
+            .bind(onNext: viewModel.openUrl)
+            .disposed(by: bag!)
         
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        
         bag = nil
-        
     }
     
 }

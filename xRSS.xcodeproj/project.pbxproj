@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		9305DCCBF767C9D20C26C1B8 /* Pods_xRSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F869368733E8A296FC64F5 /* Pods_xRSS.framework */; };
 		DA242E191FA9E063008B8EDD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA242E181FA9E062008B8EDD /* LoadingView.swift */; };
+		DA242E1B1FAB43FF008B8EDD /* ListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA242E1A1FAB43FF008B8EDD /* ListViewModelProtocol.swift */; };
+		DA242E1F1FAB4466008B8EDD /* DetailFeedViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA242E1C1FAB4465008B8EDD /* DetailFeedViewModelProtocol.swift */; };
+		DA242E201FAB4466008B8EDD /* FeedListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA242E1D1FAB4465008B8EDD /* FeedListViewModelProtocol.swift */; };
+		DA242E211FAB4466008B8EDD /* FeedViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA242E1E1FAB4465008B8EDD /* FeedViewModelProtocol.swift */; };
 		DA8460881FA1D5E800A5C48A /* NewsProviderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8460871FA1D5E800A5C48A /* NewsProviderModel.swift */; };
 		DA84608A1FA330F200A5C48A /* RxAlamofire+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8460891FA330F200A5C48A /* RxAlamofire+UIImage.swift */; };
 		DAAC6BA61F9F34B900FCAE6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC6BA51F9F34B900FCAE6E /* AppDelegate.swift */; };
@@ -39,6 +43,10 @@
 		68F869368733E8A296FC64F5 /* Pods_xRSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xRSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC51122C7B75602D57DA8687 /* Pods-xRSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xRSS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xRSS/Pods-xRSS.debug.xcconfig"; sourceTree = "<group>"; };
 		DA242E181FA9E062008B8EDD /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		DA242E1A1FAB43FF008B8EDD /* ListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelProtocol.swift; sourceTree = "<group>"; };
+		DA242E1C1FAB4465008B8EDD /* DetailFeedViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFeedViewModelProtocol.swift; sourceTree = "<group>"; };
+		DA242E1D1FAB4465008B8EDD /* FeedListViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedListViewModelProtocol.swift; sourceTree = "<group>"; };
+		DA242E1E1FAB4465008B8EDD /* FeedViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewModelProtocol.swift; sourceTree = "<group>"; };
 		DA8460871FA1D5E800A5C48A /* NewsProviderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsProviderModel.swift; sourceTree = "<group>"; };
 		DA8460891FA330F200A5C48A /* RxAlamofire+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxAlamofire+UIImage.swift"; sourceTree = "<group>"; };
 		DAAC6BA21F9F34B800FCAE6E /* xRSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xRSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,7 +145,11 @@
 			isa = PBXGroup;
 			children = (
 				DAAC6BBF1F9F35C400FCAE6E /* ListViewModel.swift */,
+				DA242E1A1FAB43FF008B8EDD /* ListViewModelProtocol.swift */,
+				DA242E1C1FAB4465008B8EDD /* DetailFeedViewModelProtocol.swift */,
+				DA242E1E1FAB4465008B8EDD /* FeedViewModelProtocol.swift */,
 				DAF25B131FA746D700D451AC /* DetailFeedViewModel.swift */,
+				DA242E1D1FAB4465008B8EDD /* FeedListViewModelProtocol.swift */,
 				DAAC6BC11F9F35D100FCAE6E /* FeedListViewModel.swift */,
 				DAE020841FA7105A009DA6CF /* FeedViewModel.swift */,
 			);
@@ -361,10 +373,14 @@
 				DAAC6BA61F9F34B900FCAE6E /* AppDelegate.swift in Sources */,
 				DAAC6BD71F9F414600FCAE6E /* DBService.swift in Sources */,
 				DA84608A1FA330F200A5C48A /* RxAlamofire+UIImage.swift in Sources */,
+				DA242E201FAB4466008B8EDD /* FeedListViewModelProtocol.swift in Sources */,
 				DAAC6BC21F9F35D100FCAE6E /* FeedListViewModel.swift in Sources */,
 				DAAC6BE41F9F636000FCAE6E /* Schedulers.swift in Sources */,
 				DAAC6BD41F9F410A00FCAE6E /* RSSService.swift in Sources */,
+				DA242E1F1FAB4466008B8EDD /* DetailFeedViewModelProtocol.swift in Sources */,
 				DAAC6BE61F9F636500FCAE6E /* ActivityIndicator.swift in Sources */,
+				DA242E211FAB4466008B8EDD /* FeedViewModelProtocol.swift in Sources */,
+				DA242E1B1FAB43FF008B8EDD /* ListViewModelProtocol.swift in Sources */,
 				DAAC6BE71FA096D900FCAE6E /* MBProgressHUD+Rx.swift in Sources */,
 				DA242E191FA9E063008B8EDD /* LoadingView.swift in Sources */,
 			);

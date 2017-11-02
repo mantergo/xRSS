@@ -13,7 +13,7 @@ import MBProgressHUD
 
 class ListViewController: UIViewController {
     
-    var viewModel: ListVM!
+    var viewModel: ListViewModelProtocol!
     
     private var bag:DisposeBag? = nil
     
