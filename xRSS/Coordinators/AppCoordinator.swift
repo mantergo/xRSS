@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import FeedKit
+import RealmSwift
 
 protocol Coordinator {
     
@@ -45,6 +46,7 @@ class AppCoordinator: AppCoordinatorProtocol {
         let navigationController = UINavigationController()
         self.window.rootViewController = navigationController
         startList(with: navigationController)
+    
         
     }
     
@@ -88,6 +90,8 @@ class AppCoordinator: AppCoordinatorProtocol {
         
         
     }
+    
+    
 
     func handleResult(message: String, type: Bool) {
         

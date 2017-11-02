@@ -51,9 +51,17 @@ class FeedListViewModel: FeedListVM{
     
     init(realm: Realm, provider: NewsProvider) {
         self.realm = realm
-        //get objects for selected newsfeed filtered by date
+        
+        //delete 7 days old items
+        try! realm.write {
+            
+            realm.delete(realm.objects(FeedModel.self).filter("date<=%@", Date().addingTimeInterval(-60*24*7)))
+            
+        }
+         //get objects for selected newsfeed filtered by date
         realmObjects = realm.objects(FeedModel.self).filter("newsProviderTitle = %@", provider.title).sorted(byKeyPath: "date", ascending: false)
    
+        
         
         self.provider = provider
         setupNotifications()

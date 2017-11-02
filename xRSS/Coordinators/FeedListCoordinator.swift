@@ -32,6 +32,7 @@ class FeedListCoordinator: Coordinator {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "FeedListVC") as? FeedListViewController {
             let realm = try! Realm()
+  
             let viewModel = FeedListViewModel(realm: realm, provider: provider)
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)

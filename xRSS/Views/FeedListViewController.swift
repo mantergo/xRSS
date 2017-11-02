@@ -27,12 +27,14 @@ class FeedListViewController: UIViewController {
       //  tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
         tableView.delegate = self
-        
+     //   viewModel.requestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         bag = DisposeBag()
+        
+        
         
         viewModel.isAnimating.asObservable()
             .subscribeOn(main)
@@ -88,7 +90,11 @@ extension FeedListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section == 0){
         return viewModel.objectCount.value
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
