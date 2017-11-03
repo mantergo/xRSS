@@ -54,10 +54,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EFZ-sy-PgY">
-                                <rect key="frame" x="87" y="74" width="200" height="50"/>
+                                <rect key="frame" x="62" y="74" width="250" height="75"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="dR8-6B-fEJ"/>
-                                    <constraint firstAttribute="height" constant="50" id="ikA-fG-AWd"/>
+                                    <constraint firstAttribute="width" constant="250" id="dR8-6B-fEJ"/>
+                                    <constraint firstAttribute="height" constant="75" id="ikA-fG-AWd"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HKP-NP-qfp">
