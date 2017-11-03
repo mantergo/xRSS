@@ -12,29 +12,11 @@ import RxSwift
 import RxCocoa
 import RealmSwift
 
-protocol FeedListViewModelProtocol {
-    
-    var objectCount: Variable<Int> { get }
-   // var objects: Variable<(Bool, [Int], [Int], [Int])> { get }
-    var objects: PublishSubject<(Bool, [Int], [Int], [Int])> { get }
-    
-    func objectViewModel(for index: Int) -> FeedViewModelProtocol
-    func objectModel(for index: Int) -> FeedModel
-    
-    var provider: NewsProvider { get set }
-    
-    var feedSelected: PublishSubject<FeedModel> { get set }
-    var isAnimating: Variable<Bool> { get set }
-    var errorResult: PublishSubject<(String, Bool)> { get set }
-    func requestData()
-    
-}
 
 class FeedListViewModel: FeedListViewModelProtocol{
     
     
     let objectCount = Variable<Int>(0)
-  //  let objects = Variable<(Bool, [Int], [Int], [Int])>((true, [], [], []))
     let objects = PublishSubject<(Bool, [Int], [Int], [Int])>()
     var realm: Realm
     let realmObjects: Results<FeedModel>
@@ -54,19 +36,21 @@ class FeedListViewModel: FeedListViewModelProtocol{
     init(realm: Realm, provider: NewsProvider) {
         self.realm = realm
         
-        //delete 7 days old items
-        try! realm.write {
-            
-            realm.delete(realm.objects(FeedModel.self).filter("date<=%@", Date().addingTimeInterval(-60*24*7)))
-            
-        }
+        
          //get objects for selected newsfeed filtered by date
+        if provider.title.isEmpty {
+            
+            realmObjects = realm.objects(FeedModel.self).filter("isFavourite=1")
+            
+        } else {
+        
         realmObjects = realm.objects(FeedModel.self).filter("newsProviderTitle = %@", provider.title).sorted(byKeyPath: "date", ascending: false)
    
+        }
         
-        
-        self.provider = provider
         setupNotifications()
+        self.provider = provider
+        
         
         
     }
@@ -81,7 +65,9 @@ class FeedListViewModel: FeedListViewModelProtocol{
                 self?.objects.onNext((true, [], [], []))
             case .update(let results, let deletions, let insertions, let modifications):
                 self?.objectCount.value = results.count
+                if(modifications.count == 0){
                 self?.objects.onNext((false, deletions, insertions, modifications))
+                }
             case .error(let error):
                 
                 fatalError("\(error)")
@@ -103,6 +89,9 @@ class FeedListViewModel: FeedListViewModelProtocol{
     
     
     @objc func requestData() {
+        
+        if(!provider.title.isEmpty) {
+            
         
         RSSService.shared.getFeed(forURL:self.provider.url)
             .catchError({[weak self] (error) -> Observable<[FeedKit.RSSFeedItem]> in
@@ -135,7 +124,7 @@ class FeedListViewModel: FeedListViewModelProtocol{
                     }
                     
                     feedArray.append(FeedModel(_title: item.title!, _description: item.description!, _url: item.link!, _date: item.pubDate!, _image:
-                        imageUrl, _provider: self.provider.title))
+                        imageUrl, _provider: self.provider.title, _isFavourite: false))
                     
                 }
                 return Observable.just(feedArray)
@@ -163,7 +152,9 @@ class FeedListViewModel: FeedListViewModelProtocol{
     
             })
             .disposed(by: bag)
-    }
+        } else {
+            self.isAnimating.value = false
+        }}
     
 }
 

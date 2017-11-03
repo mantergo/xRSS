@@ -13,7 +13,7 @@ import MBProgressHUD
 
 class ListViewController: UIViewController {
     
-    var viewModel: ListViewModelProtocol!
+    var viewModel: ListViewModel!
     
     private var bag:DisposeBag? = nil
     
@@ -25,7 +25,11 @@ class ListViewController: UIViewController {
         navigationItem.title = "Choose news provider"
         tableView.rowHeight = 60
         tableView.sectionFooterHeight = CGFloat(Float.leastNormalMagnitude)
+
         
+        
+        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +55,16 @@ class ListViewController: UIViewController {
             .bind(to: progress.rx_mbprogresshud_animating)
             .disposed(by: bag!)
         
+        let favButton = UIButton(frame: CGRect(x:0,y:0,width:26,height:26))
+        favButton.widthAnchor.constraint(equalToConstant: 26.0).isActive = true
+        favButton.heightAnchor.constraint(equalToConstant: 26.0).isActive = true
+        favButton.setImage(UIImage(named: "favFilled"), for: .normal)
+        let favNavButton = UIBarButtonItem(customView: favButton)
+ 
+        self.navigationItem.setRightBarButton(favNavButton, animated: false)
+        
+        favButton.rx.tap.asObservable().bind(onNext: viewModel.showFavorite).disposed(by: bag!)
+       
         
     }
     

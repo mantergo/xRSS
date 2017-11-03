@@ -17,29 +17,51 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var feedImage: UIImageView!
+    @IBOutlet weak var favouriteButton: UIButton!
     
-    var viewModel: FeedViewModelProtocol? = nil {
+    
+    var viewModel: FeedViewModelProtocol = FeedViewModel() {
         didSet {
             setupObservables()
         }
     }
     
-    var bag = DisposeBag()
+    private var bag:DisposeBag? = nil
+    
+//    override func awakeFromNib() {
+//
+//    }
     
     override func prepareForReuse() {
-        
-        viewModel = nil
+        bag = nil
+       // viewModel = nil
         titleLabel.text = ""
         dateLabel.text = ""
         feedImage.image = nil
+        favouriteButton.setImage(UIImage(named: "favEmpty2"), for: .normal)
+        
     }
     
     func setupObservables() {
-        //viewModel?.image.asObservable().bind(to: feedImage.rx.image).disposed(by: bag)
-        viewModel?.title.asObservable().bind(to: titleLabel.rx.text).disposed(by: bag)
-        viewModel?.date.asObservable().bind(to: dateLabel.rx.text).disposed(by: bag)
-      //  DataRequest.addAcceptableImageContentTypes(["image/jpg"])
-        viewModel?.imageURL.asObservable()
+       bag = DisposeBag()
+        
+        viewModel.title.asObservable().bind(to: titleLabel.rx.text).disposed(by: bag!)
+        viewModel.date.asObservable().bind(to: dateLabel.rx.text).disposed(by: bag!)
+      //  viewModel?.isFavourite.asObservable().bind(to:
+       //     favouriteButton.rx.isSelected).disposed(by: bag)
+        
+        viewModel.favouriteButtonImage.asObservable().bind(to:
+            favouriteButton.rx.image(for: .normal)).disposed(by: bag!)
+       // favouriteButton.rx.tap.asObservable().bind(to: viewModel?.favouriteAction).disposed(by: bag)
+        
+        favouriteButton.rx.tap
+            .asObservable()
+            .bind(onNext: viewModel.changeFavoriteState)
+            .disposed(by: bag!)
+        
+        
+        //  DataRequest.addAcceptableImageContentTypes(["image/jpg"])
+        viewModel.imageURL.asObservable()
             .subscribeOn(main)
             .subscribe(onNext: { url in
                 
@@ -47,7 +69,7 @@ class FeedCell: UITableViewCell {
                     response in print(response)
                     self.setNeedsLayout()
                 }
-            }).disposed(by: bag)
+            }).disposed(by: bag!)
     }
     
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2017 Pavel Lopatine. All rights reserved.
 //
 
+
+//po Realm.Configuration.defaultConfiguration.fileURL
 import UIKit
 import RealmSwift
 
@@ -22,11 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         appCoordinator = AppCoordinator(window: window!)
         appCoordinator.start()
-        
-//        let realm = try! Realm()
-//        try! realm.write {
-//            realm.deleteAll()
-//        }
+
+        DBService.shared.cleanOutdatedFeed()
+    
         
         
         return true

@@ -32,6 +32,7 @@ class ListCoordinator: Coordinator {
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
             
+            //open feedlist when newsprovider selected
             viewModel.newsProviderSelected
             .observeOn(main)
                 .subscribe(onNext: { [weak self] provider in
@@ -41,6 +42,7 @@ class ListCoordinator: Coordinator {
                     }
                 }).disposed(by: bag)
             
+            //send error to main coordinator
             viewModel.errorResult
                 .observeOn(main)
                 .subscribe(onNext: { [weak self] (errorMsg, type) in

@@ -33,6 +33,7 @@ class DetailFeedCoordinator: Coordinator {
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
             
+            //open feed link in Safari 
             viewModel.openURL
                 .subscribe(onNext: { item in
                     

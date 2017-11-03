@@ -85,6 +85,7 @@ class FeedListViewController: UIViewController {
             })
             .disposed(by: bag!)
         
+       
       viewModel.requestData()
         
     }

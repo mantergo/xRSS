@@ -13,18 +13,6 @@ import AlamofireImage
 import RxAlamofire
 
 
-
-protocol ListViewModelProtocol {
-    
-    var bag: DisposeBag { get }
-    var indicator: ActivityIndicator { get }
-    var newsProviderSelected: PublishSubject<NewsProvider> { get set }
-    var feedReady: PublishSubject<[FeedModel]> { get set }
-    var errorResult: PublishSubject<(String, Bool)> { get set }
-    
-}
-
-
 class ListViewModel: ListViewModelProtocol {
     
     var bag = DisposeBag()
@@ -37,6 +25,12 @@ class ListViewModel: ListViewModelProtocol {
     var feedReady = PublishSubject<[FeedModel]>()
     var errorResult = PublishSubject<(String, Bool)>()
     
+    func showFavorite() {
+        
+        newsProviderSelected.onNext(NewsProvider())
+        
+    }
+   
     init() {
 
     }

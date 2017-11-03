@@ -92,7 +92,7 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     
-
+//show alert with error from VC-s, VM-s, etc.
     func handleResult(message: String, type: Bool) {
         
         let resultTitle =  type ? "Success" : "Error"

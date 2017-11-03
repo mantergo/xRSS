@@ -37,6 +37,7 @@ class FeedListCoordinator: Coordinator {
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
             
+            //display full screen detailed feed when selected
             viewModel.feedSelected
                 .subscribe(onNext: { item in
                     

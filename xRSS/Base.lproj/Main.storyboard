@@ -37,6 +37,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="96D-Ny-hIb"/>
                     </view>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="kte-OB-Ezc" id="FOS-3E-yFr"/>
                     </connections>
@@ -79,30 +82,41 @@
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONb-oE-GQO">
-                                                    <rect key="frame" x="18" y="104.5" width="339" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONb-oE-GQO">
+                                                    <rect key="frame" x="18" y="104.5" width="279" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7w-5P-jby">
+                                                    <rect key="frame" x="334" y="109" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="YdP-p8-S8c"/>
+                                                        <constraint firstAttribute="height" constant="23" id="a9H-QK-XcE"/>
+                                                    </constraints>
+                                                    <state key="normal" image="favEmpty2"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="UIr-eb-ltJ" secondAttribute="bottom" constant="50" id="6yu-bT-WjS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="UIr-eb-ltJ" secondAttribute="trailing" constant="10" id="FB6-8L-O6j"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="I7w-5P-jby" secondAttribute="bottom" constant="6.5" id="Tj8-Ku-TaP"/>
                                                 <constraint firstItem="ONb-oE-GQO" firstAttribute="top" secondItem="UIr-eb-ltJ" secondAttribute="bottom" constant="8" id="URe-Zk-bCS"/>
                                                 <constraint firstItem="BWX-8t-edX" firstAttribute="top" secondItem="iZy-OB-1Q2" secondAttribute="top" id="UXg-Is-SXA"/>
                                                 <constraint firstItem="UIr-eb-ltJ" firstAttribute="top" secondItem="iZy-OB-1Q2" secondAttribute="topMargin" id="ZeS-Jp-J46"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ONb-oE-GQO" secondAttribute="trailing" constant="10" id="e4I-nK-MUF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ONb-oE-GQO" secondAttribute="trailing" constant="70" id="e4I-nK-MUF"/>
                                                 <constraint firstItem="UIr-eb-ltJ" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leadingMargin" constant="10" id="fT2-qf-iwn"/>
                                                 <constraint firstAttribute="bottom" secondItem="BWX-8t-edX" secondAttribute="bottom" id="hEN-gQ-AQN"/>
                                                 <constraint firstAttribute="trailing" secondItem="BWX-8t-edX" secondAttribute="trailing" id="lLi-4u-Ulm"/>
                                                 <constraint firstItem="ONb-oE-GQO" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leadingMargin" constant="10" id="pBE-49-ZqV"/>
                                                 <constraint firstItem="BWX-8t-edX" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leading" id="ph4-r0-8Gf"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ONb-oE-GQO" secondAttribute="bottom" constant="13" id="rk9-gW-2DD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="I7w-5P-jby" secondAttribute="trailing" constant="10" id="tzL-IO-pS1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="ONb-oE-GQO" id="ZLv-DS-0Ve"/>
+                                            <outlet property="favouriteButton" destination="I7w-5P-jby" id="l15-W9-aaU"/>
                                             <outlet property="feedImage" destination="BWX-8t-edX" id="IVg-gG-COQ"/>
                                             <outlet property="titleLabel" destination="UIr-eb-ltJ" id="O5I-HY-fxv"/>
                                         </connections>
@@ -197,4 +211,7 @@
             <point key="canvasLocation" x="1464.8" y="119.1904047976012"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="favEmpty2" width="128" height="128"/>
+    </resources>
 </document>

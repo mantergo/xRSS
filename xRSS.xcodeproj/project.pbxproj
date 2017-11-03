@@ -146,12 +146,12 @@
 			children = (
 				DAAC6BBF1F9F35C400FCAE6E /* ListViewModel.swift */,
 				DA242E1A1FAB43FF008B8EDD /* ListViewModelProtocol.swift */,
-				DA242E1C1FAB4465008B8EDD /* DetailFeedViewModelProtocol.swift */,
-				DA242E1E1FAB4465008B8EDD /* FeedViewModelProtocol.swift */,
 				DAF25B131FA746D700D451AC /* DetailFeedViewModel.swift */,
-				DA242E1D1FAB4465008B8EDD /* FeedListViewModelProtocol.swift */,
-				DAAC6BC11F9F35D100FCAE6E /* FeedListViewModel.swift */,
+				DA242E1C1FAB4465008B8EDD /* DetailFeedViewModelProtocol.swift */,
 				DAE020841FA7105A009DA6CF /* FeedViewModel.swift */,
+				DA242E1E1FAB4465008B8EDD /* FeedViewModelProtocol.swift */,
+				DAAC6BC11F9F35D100FCAE6E /* FeedListViewModel.swift */,
+				DA242E1D1FAB4465008B8EDD /* FeedListViewModelProtocol.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
