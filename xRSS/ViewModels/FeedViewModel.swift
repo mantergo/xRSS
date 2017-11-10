@@ -19,7 +19,7 @@ class FeedViewModel: FeedViewModelProtocol {
     var url = Variable<URL>(URL(string: "https://www.google.by")!)
     var date = Variable<String>("")
     var imageURL = Variable<URL>(URL(string: "https://www.google.by")!)
-    var isSelected = Variable<Bool>(false)
+    var isFavorite = Variable<Bool>(false)
     var favouriteButtonImage = Variable<UIImage>(R.image.favEmpty2()!)
     var favouriteAction = PublishSubject<Void>()
     
@@ -38,8 +38,8 @@ class FeedViewModel: FeedViewModelProtocol {
         let dateString = dateFormatter.string(from: model.date)
         date.value = dateString
         imageURL.value = URL(string: model.imageURL)!
-        isSelected.value = model.isFavourite
-        isSelected.asObservable()
+        isFavorite.value = model.isFavourite
+        isFavorite.asObservable()
             .subscribe(onNext:{ value in
                 self.favouriteButtonImage.value = (value ? R.image.favFilled() : R.image.favEmpty2())!
             }).disposed(by: bag!)
@@ -49,8 +49,8 @@ class FeedViewModel: FeedViewModelProtocol {
     
     func changeFavoriteState(){
         
-        DBService.shared.setState(selected: !self.isSelected.value, for: self.url.value)
-        self.isSelected.value = !self.isSelected.value
+        DBService.shared.setState(selected: !self.isFavorite.value, for: self.url.value)
+        self.isFavorite.value = !self.isFavorite.value
         
     }
     

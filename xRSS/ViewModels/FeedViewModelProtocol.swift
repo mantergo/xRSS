@@ -17,7 +17,7 @@ protocol FeedViewModelProtocol {
     var url: Variable<URL> { get }
     var date: Variable<String> { get }
     var imageURL: Variable<URL> { get }
-    var isSelected: Variable<Bool> { get }
+    var isFavorite: Variable<Bool> { get }
     var favouriteButtonImage: Variable<UIImage> { get }
     var favouriteAction: PublishSubject<Void> { get }
     func changeFavoriteState()
