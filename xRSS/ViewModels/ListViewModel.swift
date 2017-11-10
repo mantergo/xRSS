@@ -15,8 +15,7 @@ import RxAlamofire
 
 class ListViewModel: ListViewModelProtocol {
     
-    var bag = DisposeBag()
-    var indicator = ActivityIndicator()
+    var indicator = RxActivityIndicator()
     
     //input
     var newsProviderSelected = PublishSubject<NewsProvider>()
@@ -26,13 +25,14 @@ class ListViewModel: ListViewModelProtocol {
     var errorResult = PublishSubject<(String, Bool)>()
     
     func showFavorite() {
-        
+        //empty NewsProvider == favorite category
         newsProviderSelected.onNext(NewsProvider())
         
     }
    
     init() {
 
+        
     }
     
 }

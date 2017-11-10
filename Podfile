@@ -16,6 +16,7 @@ target 'xRSS' do
   pod 'Realm'
   pod 'RealmSwift'
   pod 'RxRealm'
+  pod 'R.swift'
 
   # Pods for xRSS
 

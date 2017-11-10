@@ -12,9 +12,7 @@ import RxSwift
 import Alamofire
 
 
-
 class FeedViewModel: FeedViewModelProtocol {
-    
     
     var title = Variable<String>("")
     var description = Variable<String>("")
@@ -22,14 +20,16 @@ class FeedViewModel: FeedViewModelProtocol {
     var date = Variable<String>("")
     var imageURL = Variable<URL>(URL(string: "https://www.google.by")!)
     var isSelected = Variable<Bool>(false)
-    var favouriteButtonImage = Variable<UIImage>(UIImage(named: "favEmpty2")!)
+    var favouriteButtonImage = Variable<UIImage>(R.image.favEmpty2()!)
     var favouriteAction = PublishSubject<Void>()
     
-    var bag = DisposeBag()
+    private var bag:DisposeBag? = nil
     
     convenience init (model: FeedModel) {
- 
+        
         self.init()
+        
+        bag = DisposeBag()
         title.value = model.title
         description.value = model.feedDescription
         url.value = URL(string: model.url)!
@@ -38,19 +38,12 @@ class FeedViewModel: FeedViewModelProtocol {
         let dateString = dateFormatter.string(from: model.date)
         date.value = dateString
         imageURL.value = URL(string: model.imageURL)!
-        
         isSelected.value = model.isFavourite
         isSelected.asObservable()
             .subscribe(onNext:{ value in
-                self.favouriteButtonImage.value = value ? UIImage(named:"favFilled")! : UIImage(named: "favEmpty2")!
-            }).disposed(by: bag)
-
-//        favouriteAction.subscribe(onNext:{ [weak self] in
-//         
-//            DBService.shared.setState(selected: !(self?.isSelected.value)!, for: (self?.url.value)!)
-//            self?.isSelected.value = !(self?.isSelected.value)!
-//            
-//        }).disposed(by: bag)
+                self.favouriteButtonImage.value = (value ? R.image.favFilled() : R.image.favEmpty2())!
+            }).disposed(by: bag!)
+        
         
     }
     
@@ -61,7 +54,5 @@ class FeedViewModel: FeedViewModelProtocol {
         
     }
     
-    init () {
-        
-    }
+    
 }

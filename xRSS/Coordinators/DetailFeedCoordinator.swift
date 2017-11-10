@@ -16,7 +16,7 @@ class DetailFeedCoordinator: Coordinator {
     weak var appCoordinator: AppCoordinatorProtocol!
     weak var navigationController: UINavigationController!
     var feedItem: FeedModel!
-    var bag = DisposeBag()
+    private var bag:DisposeBag? = nil
     
     init(navigationController: UINavigationController, item: FeedModel) {
         
@@ -26,9 +26,9 @@ class DetailFeedCoordinator: Coordinator {
     }
     
     func start() {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "DetailFeedVC") as? DetailFeedViewController {
+        bag = DisposeBag()
+
+        if let vc = R.storyboard.main.detailFeedVC() {
             let viewModel = DetailFeedViewModel(item: self.feedItem)
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
@@ -39,7 +39,7 @@ class DetailFeedCoordinator: Coordinator {
                     
                     UIApplication.shared.open(item, options: [:])
                     
-                }).disposed(by: bag)
+                }).disposed(by: bag!)
             
         }
         

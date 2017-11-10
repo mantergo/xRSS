@@ -26,15 +26,14 @@ class ListViewController: UIViewController {
         tableView.rowHeight = 60
         tableView.sectionFooterHeight = CGFloat(Float.leastNormalMagnitude)
 
-        
-        
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
 
          bag = DisposeBag()
+        
+        let progress = MBProgressHUD()
+        progress.mode = MBProgressHUDMode.indeterminate
         
          newsProviders.asObservable()
             .observeOn(main)
@@ -48,23 +47,28 @@ class ListViewController: UIViewController {
             .bind(to: viewModel.newsProviderSelected)
             .disposed(by: bag!)
         
-        let progress = MBProgressHUD()
-        progress.mode = MBProgressHUDMode.indeterminate
         
         viewModel.indicator.asObservable()
             .bind(to: progress.rx_mbprogresshud_animating)
             .disposed(by: bag!)
         
+        setupNavigationFavButton()
+       
+        
+    }
+    
+    
+    func setupNavigationFavButton() {
+        
         let favButton = UIButton(frame: CGRect(x:0,y:0,width:26,height:26))
         favButton.widthAnchor.constraint(equalToConstant: 26.0).isActive = true
         favButton.heightAnchor.constraint(equalToConstant: 26.0).isActive = true
-        favButton.setImage(UIImage(named: "favFilled"), for: .normal)
+        favButton.setImage(R.image.favFilled(), for: .normal)
         let favNavButton = UIBarButtonItem(customView: favButton)
- 
+        
         self.navigationItem.setRightBarButton(favNavButton, animated: false)
         
         favButton.rx.tap.asObservable().bind(onNext: viewModel.showFavorite).disposed(by: bag!)
-       
         
     }
     

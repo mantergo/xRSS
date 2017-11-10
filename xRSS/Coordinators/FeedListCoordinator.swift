@@ -17,7 +17,7 @@ class FeedListCoordinator: Coordinator {
     weak var appCoordinator: AppCoordinatorProtocol!
     weak var navigationController: UINavigationController!
     var feedItems: [FeedModel]!
-    var bag = DisposeBag()
+    private var bag:DisposeBag? = nil
     var provider = NewsProvider()
     
     init(navigationController: UINavigationController, item: NewsProvider) {
@@ -28,9 +28,9 @@ class FeedListCoordinator: Coordinator {
     }
     
     func start() {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "FeedListVC") as? FeedListViewController {
+        bag = DisposeBag()
+ 
+        if let vc = R.storyboard.main.feedListVC() {
             let realm = try! Realm()
   
             let viewModel = FeedListViewModel(realm: realm, provider: provider)
@@ -43,7 +43,7 @@ class FeedListCoordinator: Coordinator {
                     
                     self.appCoordinator.startDetailFeed(with: item, on: self.navigationController)
                     
-                }).disposed(by: bag)
+                }).disposed(by: bag!)
             
         }
 

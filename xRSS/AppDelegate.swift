@@ -8,15 +8,16 @@
 
 
 //po Realm.Configuration.defaultConfiguration.fileURL
+
 import UIKit
 import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     var appCoordinator: Coordinator!
-
+    
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -24,13 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         appCoordinator = AppCoordinator(window: window!)
         appCoordinator.start()
-
-        DBService.shared.cleanOutdatedFeed()
-    
         
+        DBService.shared.cleanOutdatedFeed()
         
         return true
     }
-
+    
 }
 

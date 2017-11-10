@@ -12,13 +12,13 @@ import RxSwift
 
 protocol FeedViewModelProtocol {
     
-    var title: Variable<String> { get set }
-    var description: Variable<String> { get set }
-    var url: Variable<URL> { get set }
-    var date: Variable<String> { get set }
-    var imageURL: Variable<URL> { get set }
-    var isSelected: Variable<Bool> { get set }
-    var favouriteButtonImage: Variable<UIImage> { get set }
-    var favouriteAction: PublishSubject<Void> { get set }
+    var title: Variable<String> { get }
+    var description: Variable<String> { get }
+    var url: Variable<URL> { get }
+    var date: Variable<String> { get }
+    var imageURL: Variable<URL> { get }
+    var isSelected: Variable<Bool> { get }
+    var favouriteButtonImage: Variable<UIImage> { get }
+    var favouriteAction: PublishSubject<Void> { get }
     func changeFavoriteState()
 }

@@ -12,37 +12,28 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-
-
 class DetailFeedViewModel: DetailFeedViewModelProtocol {
-
+    
     var title = Variable<String>("")
     var feedDescription = Variable<String>("")
     var url = Variable<URL>(URL(string:"https://www.google.by")!)
     var imageURL = Variable<URL>(URL(string: "https://google.by")!)
     var newsFeedTitle = Variable<String>("")
     
-    var bag = DisposeBag()
-    
-    //input from VC
-//    var openButton = PublishSubject<Void>()
+    private var bag:DisposeBag? = nil
     
     //output to Coordinator
     var openURL = PublishSubject<URL>()
     
     init(item: FeedModel){
         
+        bag = DisposeBag()
         title.value = item.title
         feedDescription.value = item.feedDescription
         url.value = URL(string: item.url)!
         imageURL.value = URL(string: item.imageURL)!
         newsFeedTitle.value = item.newsProviderTitle
         
-//        openButton
-//            .subscribe( onNext: { [unowned self] in
-//                self.openURL.onNext(self.url.value)
-//            }).disposed(by: bag)
-    
     }
     
     func openUrl() {

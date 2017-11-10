@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9305DCCBF767C9D20C26C1B8 /* Pods_xRSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F869368733E8A296FC64F5 /* Pods_xRSS.framework */; };
+		DA16E49D1FB5967F0020232C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA16E49C1FB5967F0020232C /* R.generated.swift */; };
 		DA242E191FA9E063008B8EDD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA242E181FA9E062008B8EDD /* LoadingView.swift */; };
 		DA242E1B1FAB43FF008B8EDD /* ListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA242E1A1FAB43FF008B8EDD /* ListViewModelProtocol.swift */; };
 		DA242E1F1FAB4466008B8EDD /* DetailFeedViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA242E1C1FAB4465008B8EDD /* DetailFeedViewModelProtocol.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		68F869368733E8A296FC64F5 /* Pods_xRSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xRSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC51122C7B75602D57DA8687 /* Pods-xRSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xRSS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xRSS/Pods-xRSS.debug.xcconfig"; sourceTree = "<group>"; };
+		DA16E49C1FB5967F0020232C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		DA242E181FA9E062008B8EDD /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		DA242E1A1FAB43FF008B8EDD /* ListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelProtocol.swift; sourceTree = "<group>"; };
 		DA242E1C1FAB4465008B8EDD /* DetailFeedViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFeedViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				DA242E181FA9E062008B8EDD /* LoadingView.swift */,
 				DAAC6BE21F9F44DC00FCAE6E /* MBProgressHUD+Rx.swift */,
 				DAAC6BE31F9F44DC00FCAE6E /* Schedulers.swift */,
+				DA16E49C1FB5967F0020232C /* R.generated.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			buildConfigurationList = DAAC6BB41F9F34B900FCAE6E /* Build configuration list for PBXNativeTarget "xRSS" */;
 			buildPhases = (
 				A98109CB97B14EA1DEAB2923 /* [CP] Check Pods Manifest.lock */,
+				DA16E49B1FB595680020232C /* ShellScript */,
 				DAAC6B9E1F9F34B800FCAE6E /* Sources */,
 				DAAC6B9F1F9F34B800FCAE6E /* Frameworks */,
 				DAAC6BA01F9F34B800FCAE6E /* Resources */,
@@ -294,7 +298,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 		A9A1D26C3A2432207723F695 /* [CP] Embed Pods Frameworks */ = {
@@ -309,6 +313,7 @@
 				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
 				"${BUILT_PRODUCTS_DIR}/HTMLString/HTMLString.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
@@ -323,6 +328,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLString.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
@@ -349,6 +355,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xRSS/Pods-xRSS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		DA16E49B1FB595680020232C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -377,6 +396,7 @@
 				DAAC6BC21F9F35D100FCAE6E /* FeedListViewModel.swift in Sources */,
 				DAAC6BE41F9F636000FCAE6E /* Schedulers.swift in Sources */,
 				DAAC6BD41F9F410A00FCAE6E /* RSSService.swift in Sources */,
+				DA16E49D1FB5967F0020232C /* R.generated.swift in Sources */,
 				DA242E1F1FAB4466008B8EDD /* DetailFeedViewModelProtocol.swift in Sources */,
 				DAAC6BE61F9F636500FCAE6E /* ActivityIndicator.swift in Sources */,
 				DA242E211FAB4466008B8EDD /* FeedViewModelProtocol.swift in Sources */,

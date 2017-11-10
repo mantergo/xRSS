@@ -15,8 +15,8 @@ class ListCoordinator: Coordinator {
     
     weak var appCoordinator: AppCoordinatorProtocol!
     var navigationController: UINavigationController!
-    var indicator = ActivityIndicator()
-    var bag = DisposeBag()
+    //  var indicator = RxActivityIndicator()
+    private var bag:DisposeBag? = nil
     
     init (navigationController: UINavigationController) {
         
@@ -25,22 +25,22 @@ class ListCoordinator: Coordinator {
     }
     
     func start() {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "ListVC") as? ListViewController {
+        bag = DisposeBag()
+       
+        if let vc = R.storyboard.main.listVC() {
             let viewModel = ListViewModel()
             vc.viewModel = viewModel
             self.navigationController.pushViewController(vc, animated: true)
             
             //open feedlist when newsprovider selected
             viewModel.newsProviderSelected
-            .observeOn(main)
+                .observeOn(main)
                 .subscribe(onNext: { [weak self] provider in
                     
                     if let navig = self?.navigationController {
-                    self?.appCoordinator.startFeedList(with: provider, on: navig)
+                        self?.appCoordinator.startFeedList(with: provider, on: navig)
                     }
-                }).disposed(by: bag)
+                }).disposed(by: bag!)
             
             //send error to main coordinator
             viewModel.errorResult
@@ -49,7 +49,7 @@ class ListCoordinator: Coordinator {
                     
                     self?.appCoordinator.handleResult(message: errorMsg, type: false)
                     
-                }).disposed(by: bag)
+                }).disposed(by: bag!)
         }
     }
 }

@@ -34,9 +34,6 @@ class FeedModel: Object {
         title = _title.removingHTMLEntities
         feedDescription = _description.removingHTMLEntities.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
         url = _url
-        //let dateFormatter = DateFormatter()
-        //dateFormatter.dateFormat = "hh:mm     dd.MM.yyyy"
-        //let dateString = dateFormatter.string(from: _date as Date)
         date = _date
         imageURL = _image
         newsProviderTitle = _provider

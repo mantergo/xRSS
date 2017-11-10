@@ -46,7 +46,7 @@ class AppCoordinator: AppCoordinatorProtocol {
         let navigationController = UINavigationController()
         self.window.rootViewController = navigationController
         startList(with: navigationController)
-    
+        
         
     }
     
@@ -86,13 +86,13 @@ class AppCoordinator: AppCoordinatorProtocol {
         detailFeedCoordinator.appCoordinator = self
         
         coordinators.updateValue(detailFeedCoordinator, forKey: "detailFeed")
-       detailFeedCoordinator.start()
+        detailFeedCoordinator.start()
         
         
     }
     
     
-//show alert with error from VC-s, VM-s, etc.
+    //show alert with error from VC-s, VM-s, etc.
     func handleResult(message: String, type: Bool) {
         
         let resultTitle =  type ? "Success" : "Error"

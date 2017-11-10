@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 import FeedKit
 
-
 class FeedListViewController: UIViewController {
     
     private let refreshControl = UIRefreshControl()
@@ -23,30 +22,21 @@ class FeedListViewController: UIViewController {
     private var bag:DisposeBag? = nil
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         navigationItem.title = "News"
-        tableView.rowHeight = 200
-      //  tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.dataSource = self
-        tableView.delegate = self
-       // viewModel.requestData()
-        //refreshControl.tintColor = UIColor.blue
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
+        
+        setupTableView()
+        
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         
-        newsProviderBackgroundImage.image = UIImage(named: viewModel.provider.title)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         bag = DisposeBag()
         
-      //  self.tableView.reloadData()
-        
+        newsProviderBackgroundImage.image = UIImage(named: viewModel.provider.title)
         
         viewModel.isAnimating.asObservable()
             .subscribeOn(main)
@@ -59,13 +49,12 @@ class FeedListViewController: UIViewController {
                 else {
                     self?.loadingBar.stopAnimation()
                     self?.refreshControl.endRefreshing()
-                   // self?.loadingBar.height = 0
                 }
                 
             }).disposed(by: bag!)
         
+        //update tableView if there are some changes in DB
         viewModel.objects
-       // .asObservable()
             .observeOn(main)
             .subscribe(onNext: { [weak self] in
                 if $0.0 {
@@ -74,19 +63,33 @@ class FeedListViewController: UIViewController {
                 else {
                     self?.tableView.beginUpdates()
                     self?.tableView.deleteRows(at: $0.1.map({ IndexPath(row: $0, section: 0) }),
-                                         with: .automatic)
+                                               with: .automatic)
                     self?.tableView.insertRows(at: $0.2.map({ IndexPath(row: $0, section: 0)}),
-                                         with: .automatic)
+                                               with: .automatic)
                     self?.tableView.reloadRows(at: $0.3.map({ IndexPath(row: $0, section: 0) }),
-                                         with: .automatic)
+                                               with: .automatic)
                     self?.tableView.endUpdates()
-                  //  self?.refreshControl.endRefreshing()
+                    
                 }
             })
             .disposed(by: bag!)
         
-       
-      viewModel.requestData()
+        
+        viewModel.requestData()
+        
+    }
+    
+    func setupTableView() {
+        
+        tableView.rowHeight = 200
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
         
     }
     
@@ -98,11 +101,10 @@ class FeedListViewController: UIViewController {
     }
     
     @objc func refreshData(_ sender: Any) {
+        
         loadingBar.startAnimating()
         viewModel.requestData()
     }
-    
-
 }
 
 extension FeedListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -112,7 +114,7 @@ extension FeedListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0){
-        return viewModel.objectCount.value
+            return viewModel.objectCount.value
         } else {
             return 0
         }
@@ -131,7 +133,5 @@ extension FeedListViewController: UITableViewDataSource, UITableViewDelegate {
         viewModel.feedSelected.onNext(viewModel.objectModel(for: indexPath.row))
         
     }
-    
-    
-    
+
 }
