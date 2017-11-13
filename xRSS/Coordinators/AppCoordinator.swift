@@ -47,7 +47,18 @@ class AppCoordinator: AppCoordinatorProtocol {
         self.window.rootViewController = navigationController
         startList(with: navigationController)
         
+        let view = UIView()
+        view.backgroundColor = UIColor.green
+        window.insertSubview(view, aboveSubview: navigationController.view)
+        view.translatesAutoresizingMaskIntoConstraints = false
         
+        let width = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 4)
+        let left = NSLayoutConstraint(item: view, attribute: .left, relatedBy: .equal, toItem: window, attribute: .left, multiplier: 1, constant: 30)
+        let top = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: window, attribute: .top, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: window, attribute: .bottom, multiplier: 1, constant: 0)
+        
+        view.addConstraint(width)
+        window.addConstraints([left, top, bottom])
     }
     
     func startList(with navigationController:UINavigationController){
