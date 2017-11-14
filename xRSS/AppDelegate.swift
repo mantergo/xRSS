@@ -11,6 +11,7 @@
 
 import UIKit
 import RealmSwift
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        Twitter.sharedInstance().start(withConsumerKey:"PvJCV1X0iU2lhLDOlom5ztbud", consumerSecret:"uQ4iUzcnoSF4RstoDKoGS875ikxMFnrgXfj7dhcvAtEZFFiPVk")
+        
         window = UIWindow()
         appCoordinator = AppCoordinator(window: window!)
         appCoordinator.start()
@@ -30,6 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        return Twitter.sharedInstance().application(app, open: url, options: options)
+    }
+    
+    
     
 }
 

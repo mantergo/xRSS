@@ -30,12 +30,10 @@ class FeedListViewModel: FeedListViewModelProtocol{
     var feedItems = Variable<[FeedModel]>([])
     var feedSelected = PublishSubject<FeedModel>()
     
-    
     init(realm: Realm, provider: NewsProvider) {
         
         bag = DisposeBag()
         self.realm = realm
-        
         
         //get objects for selected newsfeed filtered by date
         //empty title means favorite category
@@ -46,9 +44,7 @@ class FeedListViewModel: FeedListViewModelProtocol{
         } else {
             
             realmObjects = realm.objects(FeedModel.self).filter("newsProviderTitle = %@", provider.title).sorted(byKeyPath: "date", ascending: false)
-            
         }
-        
         setupNotifications()
         self.provider = provider
         
@@ -74,23 +70,22 @@ class FeedListViewModel: FeedListViewModelProtocol{
         }
     }
     
-    //feedviewModel for index
+    //feedViewModel for index
     func objectViewModel(for index: Int) -> FeedViewModelProtocol {
         let object = realmObjects[index]
         let vm = FeedViewModel(model: object)
         return vm
     }
     
-    //feedmodel for index
+    //feedModel for index
     func objectModel(for index: Int) -> FeedModel {
         return realmObjects[index]
     }
     
-    
     @objc func requestData() {
         
+        //if provider.title is Empty, then favorited feed is displayed and there is no neen to requestData()
         if(!provider.title.isEmpty) {
-            
             
             RSSService.shared.getFeed(forURL:self.provider.url)
                 .catchError({[weak self] (error) -> Observable<[FeedKit.RSSFeedItem]> in
@@ -141,7 +136,6 @@ class FeedListViewModel: FeedListViewModelProtocol{
                                 realm.add(item)
                             }
                         }
-                        
                         }
                     } catch let error as NSError {
                         self?.errorResult.onNext((error.localizedDescription, false))

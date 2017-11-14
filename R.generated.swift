@@ -31,7 +31,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 10 images.
+  /// This `R.image` struct is generated, and contains static references to 12 images.
   struct image {
     /// Image `CITYDOG.BY`.
     static let citydogbY = Rswift.ImageResource(bundle: R.hostingBundle, name: "CITYDOG.BY")
@@ -45,6 +45,8 @@ struct R: Rswift.Validatable {
     static let svabodaorG = Rswift.ImageResource(bundle: R.hostingBundle, name: "SVABODA.ORG")
     /// Image `TUT.BY`.
     static let tutbY = Rswift.ImageResource(bundle: R.hostingBundle, name: "TUT.BY")
+    /// Image `facebook`.
+    static let facebook = Rswift.ImageResource(bundle: R.hostingBundle, name: "facebook")
     /// Image `favEmpty2`.
     static let favEmpty2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "favEmpty2")
     /// Image `favEmpty`.
@@ -53,6 +55,8 @@ struct R: Rswift.Validatable {
     static let favFilled = Rswift.ImageResource(bundle: R.hostingBundle, name: "favFilled")
     /// Image `placeholder`.
     static let placeholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "placeholder")
+    /// Image `twitter`.
+    static let twitter = Rswift.ImageResource(bundle: R.hostingBundle, name: "twitter")
     
     /// `UIImage(named: "CITYDOG.BY", bundle: ..., traitCollection: ...)`
     static func citydogbY(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -84,6 +88,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.tutbY, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "facebook", bundle: ..., traitCollection: ...)`
+    static func facebook(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.facebook, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "favEmpty", bundle: ..., traitCollection: ...)`
     static func favEmpty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.favEmpty, compatibleWith: traitCollection)
@@ -102,6 +111,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "placeholder", bundle: ..., traitCollection: ...)`
     static func placeholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.placeholder, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "twitter", bundle: ..., traitCollection: ...)`
+    static func twitter(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.twitter, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
@@ -210,6 +224,8 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "facebook") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'facebook' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "twitter") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'twitter' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "favEmpty2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'favEmpty2' is used in storyboard 'Main', but couldn't be loaded.") }
         if _R.storyboard.main().listVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'listVC' could not be loaded from storyboard 'Main' as 'ListViewController'.") }
         if _R.storyboard.main().feedListVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'feedListVC' could not be loaded from storyboard 'Main' as 'FeedListViewController'.") }

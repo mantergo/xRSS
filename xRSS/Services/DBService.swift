@@ -25,8 +25,9 @@ class DBService {
         //delete 7 days old items if they are not favorite
         try! realm.write {
             
-            realm.delete(realm.objects(FeedModel.self).filter("date<=%@", Date().addingTimeInterval(-60*60*24*7)).filter("isFavourite==%@", false))
-            print(realm.objects(FeedModel.self).filter("date<=%@", Date().addingTimeInterval(-60*60*24*7)).filter("isFavourite==%@", false).count)
+            realm.delete(realm.objects(FeedModel.self).filter("date<=%@", Calendar.current.date(byAdding: .day, value: -7, to: Date())!).filter("isFavourite==%@", false))
+            
+//            print(realm.objects(FeedModel.self).filter("date<=%@", Date().addingTimeInterval(-60*60*24*7)).filter("isFavourite==%@", false).count)
             
         }
     }

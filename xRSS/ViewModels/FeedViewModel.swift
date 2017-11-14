@@ -10,7 +10,8 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Alamofire
-
+import TwitterKit
+import FacebookShare
 
 class FeedViewModel: FeedViewModelProtocol {
     
@@ -44,7 +45,73 @@ class FeedViewModel: FeedViewModelProtocol {
                 self.favouriteButtonImage.value = (value ? R.image.favFilled() : R.image.favEmpty2())!
             }).disposed(by: bag!)
         
+    }
+    
+
+    
+    func shareToTwitter(){
+
+        if (Twitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
+            // App must have at least one logged-in user to compose a Tweet
+            Alamofire.request(imageURL.value.absoluteString).responseImage {[weak self] response in
+                debugPrint(response)
+                
+                if let image = response.result.value {
+                    let composer = TWTRComposer()
+                    composer.setText((self?.title.value)! + "\n" + (self?.url.value.absoluteString)!)
+                    composer.setImage(image)
+                    composer.show(from: (UIApplication.shared.keyWindow?.rootViewController)!, completion: nil)
+                }
+            }
+        } else {
+            // Log in, and then check again
+            Twitter.sharedInstance().logIn {[weak self] session, error in
+                if session != nil { // Log in succeeded
+                    Alamofire.request((self?.imageURL.value.absoluteString)!).responseImage { response in
+                        debugPrint(response)
+                        
+                        if let image = response.result.value {
+                            let composer = TWTRComposer()
+                            composer.setText((self?.title.value)! + "\n" + (self?.url.value.absoluteString)!)
+                            composer.setImage(image)
+                            composer.show(from: (UIApplication.shared.keyWindow?.rootViewController)!, completion: nil)
+                        }
+                    }
+                } else {
+                    self?.errorAlert(for: "Twitter")
+                }
+            }
+        }
+    }
+    
+    func shareToFacebook() {
         
+        let content: LinkShareContent = LinkShareContent(url: url.value)
+        let shareDialog = ShareDialog(content: content)
+        shareDialog.mode = .native
+        shareDialog.failsOnInvalidData = true
+        shareDialog.completion = { result in
+            print(result)
+        }
+        let post = String(format: "fbauth2://")
+        let canOpenURL = UIApplication.shared.canOpenURL(URL(string:post)!)
+        if (canOpenURL)
+        {
+             try! shareDialog.show()
+        }
+        else
+        {
+            self.errorAlert(for: "Facebook")
+        }
+    }
+    
+    func errorAlert(for appName: String) {
+        
+        let alert = UIAlertController(title: "No \(appName) Accounts Available", message: "You must log in before presenting a composer.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+        })
+        alert.addAction(ok)
+        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: false, completion: nil)
     }
     
     func changeFavoriteState(){

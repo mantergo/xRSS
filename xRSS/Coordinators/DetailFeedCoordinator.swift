@@ -16,7 +16,7 @@ class DetailFeedCoordinator: Coordinator {
     weak var appCoordinator: AppCoordinatorProtocol!
     weak var navigationController: UINavigationController!
     var feedItem: FeedModel!
-    private var bag:DisposeBag? = nil
+    private var bag: DisposeBag? = nil
     
     init(navigationController: UINavigationController, item: FeedModel) {
         
@@ -40,10 +40,7 @@ class DetailFeedCoordinator: Coordinator {
                     UIApplication.shared.open(item, options: [:])
                     
                 }).disposed(by: bag!)
-            
         }
-        
     }
-        
 }
 

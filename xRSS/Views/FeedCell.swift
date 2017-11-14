@@ -18,6 +18,9 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var feedImage: UIImageView!
     @IBOutlet weak var favouriteButton: UIButton!
+    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
+    
     
     
     var viewModel: FeedViewModelProtocol = FeedViewModel() {
@@ -50,6 +53,17 @@ class FeedCell: UITableViewCell {
             .asObservable()
             .bind(onNext: viewModel.changeFavoriteState)
             .disposed(by: bag!)
+        
+        twitterButton.rx.tap
+        .asObservable()
+        .bind(onNext: viewModel.shareToTwitter)
+            .disposed(by: bag!)
+        
+        facebookButton.rx.tap
+        .asObservable()
+        .bind(onNext: viewModel.shareToFacebook)
+        .disposed(by: bag!)
+        
         
     
         viewModel.imageURL.asObservable()

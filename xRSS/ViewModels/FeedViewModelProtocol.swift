@@ -20,5 +20,7 @@ protocol FeedViewModelProtocol {
     var isFavorite: Variable<Bool> { get }
     var favouriteButtonImage: Variable<UIImage> { get }
     var favouriteAction: PublishSubject<Void> { get }
+    func shareToTwitter()
     func changeFavoriteState()
+    func shareToFacebook()
 }

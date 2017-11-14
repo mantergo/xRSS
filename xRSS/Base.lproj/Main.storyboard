@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -78,28 +78,45 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="147"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIr-eb-ltJ">
-                                                    <rect key="frame" x="18" y="8" width="339" height="89"/>
+                                                    <rect key="frame" x="25" y="11" width="325" height="86"/>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONb-oE-GQO">
-                                                    <rect key="frame" x="18" y="104.5" width="279" height="21"/>
+                                                    <rect key="frame" x="25" y="104.5" width="265" height="18.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7w-5P-jby">
-                                                    <rect key="frame" x="334" y="109" width="23" height="23"/>
+                                                    <rect key="frame" x="327" y="106.5" width="23" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="23" id="YdP-p8-S8c"/>
                                                         <constraint firstAttribute="height" constant="23" id="a9H-QK-XcE"/>
                                                     </constraints>
                                                     <state key="normal" image="favEmpty2"/>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1B-rW-xQw">
+                                                    <rect key="frame" x="287" y="107" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="23" id="Nhr-ZT-WWz"/>
+                                                        <constraint firstAttribute="width" constant="23" id="gLh-C8-gAV"/>
+                                                    </constraints>
+                                                    <state key="normal" image="twitter"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RN5-ZP-7y7">
+                                                    <rect key="frame" x="247" y="107" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="ipz-3N-7gf"/>
+                                                        <constraint firstAttribute="height" constant="23" id="uuN-do-Bp5"/>
+                                                    </constraints>
+                                                    <state key="normal" image="facebook"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="UIr-eb-ltJ" secondAttribute="bottom" constant="50" id="6yu-bT-WjS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="UIr-eb-ltJ" secondAttribute="trailing" constant="10" id="FB6-8L-O6j"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="RN5-ZP-7y7" secondAttribute="bottom" constant="6" id="QZF-tm-KVF"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="I7w-5P-jby" secondAttribute="bottom" constant="6.5" id="Tj8-Ku-TaP"/>
                                                 <constraint firstItem="ONb-oE-GQO" firstAttribute="top" secondItem="UIr-eb-ltJ" secondAttribute="bottom" constant="8" id="URe-Zk-bCS"/>
                                                 <constraint firstItem="BWX-8t-edX" firstAttribute="top" secondItem="iZy-OB-1Q2" secondAttribute="top" id="UXg-Is-SXA"/>
@@ -111,14 +128,19 @@
                                                 <constraint firstItem="ONb-oE-GQO" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leadingMargin" constant="10" id="pBE-49-ZqV"/>
                                                 <constraint firstItem="BWX-8t-edX" firstAttribute="leading" secondItem="iZy-OB-1Q2" secondAttribute="leading" id="ph4-r0-8Gf"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ONb-oE-GQO" secondAttribute="bottom" constant="13" id="rk9-gW-2DD"/>
+                                                <constraint firstItem="I7w-5P-jby" firstAttribute="leading" secondItem="J1B-rW-xQw" secondAttribute="trailing" constant="17" id="tTA-0v-g4n"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="I7w-5P-jby" secondAttribute="trailing" constant="10" id="tzL-IO-pS1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="J1B-rW-xQw" secondAttribute="bottom" constant="6" id="wMi-Vg-MtK"/>
+                                                <constraint firstItem="J1B-rW-xQw" firstAttribute="leading" secondItem="RN5-ZP-7y7" secondAttribute="trailing" constant="17" id="wjW-Q7-UY4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="ONb-oE-GQO" id="ZLv-DS-0Ve"/>
+                                            <outlet property="facebookButton" destination="RN5-ZP-7y7" id="5bU-ef-ese"/>
                                             <outlet property="favouriteButton" destination="I7w-5P-jby" id="l15-W9-aaU"/>
                                             <outlet property="feedImage" destination="BWX-8t-edX" id="IVg-gG-COQ"/>
                                             <outlet property="titleLabel" destination="UIr-eb-ltJ" id="O5I-HY-fxv"/>
+                                            <outlet property="twitterButton" destination="J1B-rW-xQw" id="g5A-yE-viU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -212,6 +234,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="facebook" width="128" height="128"/>
         <image name="favEmpty2" width="128" height="128"/>
+        <image name="twitter" width="128" height="128"/>
     </resources>
 </document>

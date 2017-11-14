@@ -17,6 +17,10 @@ target 'xRSS' do
   pod 'RealmSwift'
   pod 'RxRealm'
   pod 'R.swift'
+  pod 'TwitterKit'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
 
   # Pods for xRSS
 

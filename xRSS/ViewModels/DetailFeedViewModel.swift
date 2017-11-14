@@ -20,7 +20,7 @@ class DetailFeedViewModel: DetailFeedViewModelProtocol {
     var imageURL = Variable<URL>(URL(string: "https://google.by")!)
     var newsFeedTitle = Variable<String>("")
     
-    private var bag:DisposeBag? = nil
+    private var bag: DisposeBag? = nil
     
     //output to Coordinator
     var openURL = PublishSubject<URL>()
