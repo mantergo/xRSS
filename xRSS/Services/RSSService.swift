@@ -26,9 +26,11 @@ extension CustomError: LocalizedError {
 class RSSService: NSObject {
     
     static let shared = RSSService()
+    var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
 
     func getFeed(forURL url: String) -> Observable<[FeedKit.RSSFeedItem]> {
         
+        registerBackgroundTask()
         return Observable.create { observer in
             
             let feedURL = URL(string: url)
@@ -46,12 +48,25 @@ class RSSService: NSObject {
                     
                 }
                 observer.onCompleted()
+                self.endBackgroundTask()
             }
             
             return Disposables.create{ print("disposed")}
             
         }
     
+    }
+    
+    func registerBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            self?.endBackgroundTask()
+        }
+    }
+    
+    func endBackgroundTask() {
+        print("Background task ended.")
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = UIBackgroundTaskInvalid
     }
   
 }
