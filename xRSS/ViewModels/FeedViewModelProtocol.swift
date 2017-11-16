@@ -23,4 +23,5 @@ protocol FeedViewModelProtocol {
     func shareToTwitter()
     func changeFavoriteState()
     func shareToFacebook()
+    func rssShare()
 }

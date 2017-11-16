@@ -21,6 +21,7 @@ target 'xRSS' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
+  pod 'Branch'
 
   # Pods for xRSS
 

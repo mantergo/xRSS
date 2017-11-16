@@ -16,10 +16,39 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>twitterkit-PvJCV1X0iU2lhLDOlom5ztbud</string>
+				<string>fb146155039352997</string>
+				<string>xRSS</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>146155039352997</string>
+	<key>FacebookDisplayName</key>
+	<string>xRSS</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>twitter</string>
+		<string>twitterauth</string>
+		<string>fbapi</string>
+		<string>fbauth2</string>
+		<string>fb-messenger-api</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -41,33 +70,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>twitterkit-PvJCV1X0iU2lhLDOlom5ztbud</string>
-				<string>fb146155039352997</string>
-			</array>
-		</dict>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>twitter</string>
-		<string>twitterauth</string>
-		<string>fbapi</string>
-		<string>fbauth2</string>
-		<string>fb-messenger-api</string>
-		<string>fbshareextension</string>
-	</array>
-	<key>FacebookAppID</key>
-	<string>146155039352997</string>
-	<key>FacebookDisplayName</key>
-	<string>xRSS</string>
-	<key>NSAppTransportSecurity</key>
+	<key>branch_key</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<key>live</key>
+		<string>key_live_dkEIuC9RQ1JAmuPSahdpApkiqAfW8O2e</string>
+		<key>test</key>
+		<string>key_test_aiBJsBYKNWQEiqMMjamD2gkmzCaX8RXv</string>
 	</dict>
 </dict>
 </plist>

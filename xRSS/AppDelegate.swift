@@ -12,22 +12,32 @@
 import UIKit
 import RealmSwift
 import TwitterKit
+import Branch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var appCoordinator: Coordinator!
-    
-    
+    var appCoordinator: AppCoordinator!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        Twitter.sharedInstance().start(withConsumerKey:"PvJCV1X0iU2lhLDOlom5ztbud", consumerSecret:"uQ4iUzcnoSF4RstoDKoGS875ikxMFnrgXfj7dhcvAtEZFFiPVk")
         
         window = UIWindow()
         appCoordinator = AppCoordinator(window: window!)
         appCoordinator.start()
+        
+        let branch: Branch = Branch.getInstance()
+        branch.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: {params, error in
+            if error == nil {
+                //check if it is init or deeplink 
+                let castedParams = params as! [String: AnyObject]
+                if((castedParams["~creation_source"]) != nil){
+                    print("params: %@", params as? [String: AnyObject] ?? {})
+                    self.appCoordinator.start(with: (params as? [String: AnyObject])!)
+                }
+            }
+        })
+        Twitter.sharedInstance().start(withConsumerKey:"PvJCV1X0iU2lhLDOlom5ztbud", consumerSecret:"uQ4iUzcnoSF4RstoDKoGS875ikxMFnrgXfj7dhcvAtEZFFiPVk")
         
         DBService.shared.cleanOutdatedFeed()
         
@@ -40,6 +50,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    // Respond to URI scheme links
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        // pass the url to the handle deep link call
+        Branch.getInstance().application(application,
+                                                             open: url,
+                                                             sourceApplication: sourceApplication,
+                                                             annotation: annotation
+        )
+        return true
+    }
     
 }
 

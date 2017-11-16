@@ -31,7 +31,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 12 images.
+  /// This `R.image` struct is generated, and contains static references to 13 images.
   struct image {
     /// Image `CITYDOG.BY`.
     static let citydogbY = Rswift.ImageResource(bundle: R.hostingBundle, name: "CITYDOG.BY")
@@ -55,6 +55,8 @@ struct R: Rswift.Validatable {
     static let favFilled = Rswift.ImageResource(bundle: R.hostingBundle, name: "favFilled")
     /// Image `placeholder`.
     static let placeholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "placeholder")
+    /// Image `rss`.
+    static let rss = Rswift.ImageResource(bundle: R.hostingBundle, name: "rss")
     /// Image `twitter`.
     static let twitter = Rswift.ImageResource(bundle: R.hostingBundle, name: "twitter")
     
@@ -111,6 +113,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "placeholder", bundle: ..., traitCollection: ...)`
     static func placeholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.placeholder, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "rss", bundle: ..., traitCollection: ...)`
+    static func rss(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.rss, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "twitter", bundle: ..., traitCollection: ...)`
@@ -225,8 +232,9 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "facebook") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'facebook' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "twitter") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'twitter' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "rss") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'rss' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "favEmpty2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'favEmpty2' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "twitter") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'twitter' is used in storyboard 'Main', but couldn't be loaded.") }
         if _R.storyboard.main().listVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'listVC' could not be loaded from storyboard 'Main' as 'ListViewController'.") }
         if _R.storyboard.main().feedListVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'feedListVC' could not be loaded from storyboard 'Main' as 'FeedListViewController'.") }
         if _R.storyboard.main().detailFeedVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'detailFeedVC' could not be loaded from storyboard 'Main' as 'DetailFeedViewController'.") }

@@ -20,6 +20,7 @@ protocol Coordinator {
 protocol AppCoordinatorProtocol: class, Coordinator {
     
     func start()
+    func start(with params: [String: AnyObject])
     func startList(with navigationController:UINavigationController)
     func startFeedList(with provider: NewsProvider, on navigationController: UINavigationController)
     func startDetailFeed(with feed: FeedModel, on navigationController: UINavigationController)
@@ -47,18 +48,46 @@ class AppCoordinator: AppCoordinatorProtocol {
         self.window.rootViewController = navigationController
         startList(with: navigationController)
         
-//        let view = UIView()`
-//        view.backgroundColor = UIColor.green
-//        window.insertSubview(view, aboveSubview: navigationController.view)
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//
-//        let width = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 4)
-//        let left = NSLayoutConstraint(item: view, attribute: .left, relatedBy: .equal, toItem: window, attribute: .left, multiplier: 1, constant: 30)
-//        let top = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: window, attribute: .top, multiplier: 1, constant: 0)
-//        let bottom = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: window, attribute: .bottom, multiplier: 1, constant: 0)
-//
-//        view.addConstraint(width)
-//        window.addConstraints([left, top, bottom])
+    }
+    
+    //start when deeplinked
+    func start(with params: [String: AnyObject]){
+        
+        let navigationController = self.window.rootViewController as! UINavigationController
+        
+        //create FeedModel from deeplink
+        let feedModel = FeedModel(_title: params["$og_title"] as! String, _description: params["$og_description"] as! String, _url: params["$canonical_url"] as! String, _date: Date(), _image: params["$og_image_url"] as! String, _provider: "", _isFavourite: false)
+        
+        //if news already exists in DB then mark it as favorite
+        do {
+            let realm = try! Realm()
+            if let object = realm.object(ofType: FeedModel.self, forPrimaryKey: params["$canonical_url"] as! String){
+                try realm.write {
+                    object.isFavourite = true
+                }
+        //if there is no such news in db then add it and mark as favorite
+            } else {
+                
+                try realm.write {
+                    realm.add(feedModel)
+                } }
+        } catch let error as NSError {
+            handleResult(message: error.description, type: false)
+        }
+        
+        //start DetailFeedController with new from deeplink
+        startDetailFeed(with: feedModel, on: navigationController)
+        
+        //leave only only controller with NewsFeedProviders and Controller with news from deeplink
+        var navArray = navigationController.viewControllers
+        repeat {
+            navArray.remove(at: 1)
+        } while navArray.count > 2
+        
+        navigationController.viewControllers = navArray
+        //display alert with success
+        handleResult(message: "News added to favorites", type: true)
+        
     }
     
     func startList(with navigationController:UINavigationController){
@@ -98,7 +127,6 @@ class AppCoordinator: AppCoordinatorProtocol {
         
         coordinators.updateValue(detailFeedCoordinator, forKey: "detailFeed")
         detailFeedCoordinator.start()
-        
         
     }
     

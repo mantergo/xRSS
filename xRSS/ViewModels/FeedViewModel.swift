@@ -12,6 +12,7 @@ import RxSwift
 import Alamofire
 import TwitterKit
 import FacebookShare
+import Branch
 
 class FeedViewModel: FeedViewModelProtocol {
     
@@ -95,13 +96,33 @@ class FeedViewModel: FeedViewModelProtocol {
         }
         let post = String(format: "fbauth2://")
         let canOpenURL = UIApplication.shared.canOpenURL(URL(string:post)!)
-        if (canOpenURL)
-        {
+        if (canOpenURL) {
              try! shareDialog.show()
         }
-        else
-        {
+        else {
             self.errorAlert(for: "Facebook")
+        }
+    }
+    
+    func rssShare() {
+        
+        let buo = BranchUniversalObject(canonicalIdentifier: "id")
+        buo.title = title.value
+        buo.contentDescription = description.value
+        buo.imageUrl = imageURL.value.absoluteString
+        buo.contentIndexMode = .public
+        buo.canonicalUrl = url.value.absoluteString
+        
+        let lp: BranchLinkProperties = BranchLinkProperties()
+        lp.addControlParam("$ios_url", withValue: "xRSS://")
+        
+        
+        
+        buo.getShortUrl(with: lp) {(url, error) in
+            print(url ?? "")
+            buo.showShareSheet(with: lp, andShareText: "", from: UIApplication.shared.keyWindow?.rootViewController) { (activityType, completed) in
+                print(activityType ?? "")
+            }
         }
     }
     
@@ -120,6 +141,4 @@ class FeedViewModel: FeedViewModelProtocol {
         self.isFavorite.value = !self.isFavorite.value
         
     }
-    
-    
 }

@@ -20,6 +20,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var rssShareButton: UIButton!
     
     
     
@@ -64,6 +65,10 @@ class FeedCell: UITableViewCell {
         .bind(onNext: viewModel.shareToFacebook)
         .disposed(by: bag!)
         
+        rssShareButton.rx.tap
+        .asObservable()
+        .bind(onNext: viewModel.rssShare)
+        .disposed(by: bag!)
         
     
         viewModel.imageURL.asObservable()
